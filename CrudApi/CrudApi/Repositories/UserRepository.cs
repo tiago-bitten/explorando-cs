@@ -1,33 +1,67 @@
-﻿using CrudApi.Models;
+﻿using CrudApi.Data;
+using CrudApi.Models;
 using CrudApi.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudApi.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Task<User> CreateAsync(User user)
+
+        private readonly CrudApiContext _context;
+
+        public UserRepository(CrudApiContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<User> DeleteAsync(int id)
+        public async Task<User> CreateAsync(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return user;
         }
 
-        public Task<List<User>> GetAllAsync()
+        public async Task<List<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Users.ToListAsync();
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FindAsync(id);
         }
 
-        public Task<User> UpdateAsync(User user)
+        public async Task<User> UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            var userToUpdate = await GetByIdAsync(user.Id);
+
+            if (userToUpdate == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            userToUpdate.Username = user.Username;
+            userToUpdate.Password = user.Password;
+
+            _context.Users.Update(userToUpdate);
+            _context.SaveChanges();
+
+            return userToUpdate;
+        }
+        public async Task<User> DeleteAsync(int id)
+        {
+            var userToDelete = await GetByIdAsync(id);
+
+            if (userToDelete == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            _context.Users.Remove(userToDelete);
+            _context.SaveChanges();
+
+            return userToDelete;
         }
     }
 }
