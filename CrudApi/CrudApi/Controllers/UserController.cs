@@ -19,13 +19,19 @@ namespace CrudApi.Controllers
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAll()
         {
-            return await _userRepository.GetAllAsync();
+            return Ok(await _userRepository.GetAllAsync());
         }
 
         [HttpPost]
         public async Task<ActionResult<User>> Create([FromBody] User user)
         {
-            return await _userRepository.CreateAsync(user);
+            return Created("", await _userRepository.CreateAsync(user));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<User>> Delete(int id)
+        {
+            return Ok(await _userRepository.DeleteAsync(id));
         }
     }
 }
