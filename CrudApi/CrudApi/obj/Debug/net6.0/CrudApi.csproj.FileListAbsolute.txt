@@ -52,3 +52,4 @@ C:\Users\teste\Documents\CSHARP\explorando\CrudApi\CrudApi\bin\Debug\net6.0\Syst
 C:\Users\teste\Documents\CSHARP\explorando\CrudApi\CrudApi\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\teste\Documents\CSHARP\explorando\CrudApi\CrudApi\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\teste\Documents\CSHARP\explorando\CrudApi\CrudApi\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\teste\Documents\CSHARP\explorando\CrudApi\CrudApi\bin\Debug\net6.0\BCrypt.Net-Next.dll

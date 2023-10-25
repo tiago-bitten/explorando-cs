@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JnEVKR6XmiboxRFVlCxi/SA377r4T+abVd98n6jx8kE9MivBntt1lV3Yb4Y/4CiClya+oJ5DOAg35l7VVZpwCg==",
+  "dgSpecHash": "Ivm57zB1sHoe2mv9XhrmDWKiG1UGT0XVj6WuN5wBDjeC7GbIAwQ/yyHeg+1fjDM3rh7IuEFIImPAtf/wQMB5PA==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\explorando\\CrudApi\\CrudApi\\CrudApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.13\\microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.13\\microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",

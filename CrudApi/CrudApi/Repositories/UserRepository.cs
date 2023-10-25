@@ -17,6 +17,8 @@ namespace CrudApi.Repositories
 
         public async Task<User> CreateAsync(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
             _context.Users.Add(user);
             _context.SaveChanges();
             return user;
