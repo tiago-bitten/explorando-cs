@@ -1,4 +1,6 @@
-﻿using CrudApi.Data;
+﻿using AutoMapper;
+using CrudApi.Data;
+using CrudApi.DTOs;
 using CrudApi.Models;
 using CrudApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -9,19 +11,21 @@ namespace CrudApi.Repositories
     {
 
         private readonly CrudApiContext _context;
+        private readonly IMapper _mapper;
 
-        public UserRepository(CrudApiContext context)
+        public UserRepository(CrudApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<User> CreateAsync(User user)
+        public async Task<UserDto> CreateAsync(User user)
         {
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             _context.Users.Add(user);
             _context.SaveChanges();
-            return user;
+            return _mapper.Map<UserDto>(user);
         }
 
         public async Task<List<User>> GetAllAsync()

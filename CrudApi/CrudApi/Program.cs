@@ -1,4 +1,5 @@
 using CrudApi.Data;
+using CrudApi.Mappings;
 using CrudApi.Repositories;
 using CrudApi.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<CrudApiContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
 });
+
+builder.Services.AddAutoMapper(typeof(EntitiesToDtoMappingProfile));
 
 var app = builder.Build();
 

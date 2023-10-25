@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Ivm57zB1sHoe2mv9XhrmDWKiG1UGT0XVj6WuN5wBDjeC7GbIAwQ/yyHeg+1fjDM3rh7IuEFIImPAtf/wQMB5PA==",
+  "dgSpecHash": "hgt5tJLwc9JrpaMkqhVXTggHq3xyWopgPzkO3ZXCpD4KYdWuKYc3u6tuLiUfDcOUW2V5nvkTqJ1rwNwPfUlqbA==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\explorando\\CrudApi\\CrudApi\\CrudApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.13\\microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.13\\microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.13\\microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
