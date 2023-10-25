@@ -1,4 +1,5 @@
-﻿using CrudApi.Models;
+﻿using CrudApi.DTOs;
+using CrudApi.Models;
 using CrudApi.Repositories;
 using CrudApi.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +18,25 @@ namespace CrudApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAll()
+        public async Task<ActionResult<List<UserDto>>> GetAll()
         {
             return Ok(await _userRepository.GetAllAsync());
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Create([FromBody] User user)
+        public async Task<ActionResult<UserDto>> Create([FromBody] User user)
         {
             return Created("", await _userRepository.CreateAsync(user));
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<User>> Update(int id, [FromBody] User user)
+        public async Task<ActionResult<UserDto>> Update(int id, [FromBody] User user)
         {
             return Ok(await _userRepository.UpdateAsync(id, user));
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> Delete(int id)
+        public async Task<ActionResult<UserDto>> Delete(int id)
         {
             return Ok(await _userRepository.DeleteAsync(id));
         }

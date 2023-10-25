@@ -28,17 +28,17 @@ namespace CrudApi.Repositories
             return _mapper.Map<UserDto>(user);
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public async Task<List<UserDto>> GetAllAsync()
         {
-            return await _context.Users.ToListAsync();
+            return _mapper.Map<List<UserDto>>(await _context.Users.ToListAsync());
         }
 
-        public async Task<User> GetByIdAsync(int id)
+        public async Task<UserDto> GetByIdAsync(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return _mapper.Map<UserDto>(await _context.Users.FindAsync(id));
         }
 
-        public async Task<User> UpdateAsync(int id, User user)
+        public async Task<UserDto> UpdateAsync(int id, User user)
         {
             var userToUpdate = await GetByIdAsync(id);
             if (userToUpdate == null)
@@ -50,11 +50,11 @@ namespace CrudApi.Repositories
             userToUpdate.Password = user.Password;
 
             _context.SaveChanges();
-            return userToUpdate;
+            return _mapper.Map<UserDto>(userToUpdate);
         }
-        public async Task<User> DeleteAsync(int id)
+        public async Task<UserDto> DeleteAsync(int id)
         {
-            var userToDelete = await GetByIdAsync(id);
+            var userToDelete = await _context.Users.FindAsync(id);
 
             if (userToDelete == null)
             {
@@ -64,7 +64,7 @@ namespace CrudApi.Repositories
             _context.Users.Remove(userToDelete);
             _context.SaveChanges();
 
-            return userToDelete;
+            return _mapper.Map<UserDto>(userToDelete);
         }
     }
 }
