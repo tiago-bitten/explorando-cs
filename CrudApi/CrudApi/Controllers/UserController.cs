@@ -28,6 +28,12 @@ namespace CrudApi.Controllers
             return Created("", await _userRepository.CreateAsync(user));
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<User>> Update(int id, [FromBody] User user)
+        {
+            return Ok(await _userRepository.UpdateAsync(id, user));
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<User>> Delete(int id)
         {

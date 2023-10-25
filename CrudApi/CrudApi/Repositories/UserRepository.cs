@@ -32,10 +32,9 @@ namespace CrudApi.Repositories
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task<User> UpdateAsync(User user)
+        public async Task<User> UpdateAsync(int id, User user)
         {
-            var userToUpdate = await GetByIdAsync(user.Id);
-
+            var userToUpdate = await GetByIdAsync(id);
             if (userToUpdate == null)
             {
                 throw new Exception("User not found");
@@ -44,9 +43,7 @@ namespace CrudApi.Repositories
             userToUpdate.Username = user.Username;
             userToUpdate.Password = user.Password;
 
-            _context.Users.Update(userToUpdate);
             _context.SaveChanges();
-
             return userToUpdate;
         }
         public async Task<User> DeleteAsync(int id)
