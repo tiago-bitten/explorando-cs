@@ -30,9 +30,9 @@ namespace CrudApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UserDto>> Update(int id, [FromBody] User user)
+        public async Task<ActionResult<UserDto>> Update(int id, [FromBody] UserDto dto)
         {
-            return Ok(await _userRepository.UpdateAsync(id, user));
+            return Ok(await _userRepository.UpdateAsync(id, dto));
         }
 
         [HttpDelete("{id}")]

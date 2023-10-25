@@ -38,8 +38,9 @@ namespace CrudApi.Repositories
             return _mapper.Map<UserDto>(await _context.Users.FindAsync(id));
         }
 
-        public async Task<UserDto> UpdateAsync(int id, User user)
+        public async Task<UserDto> UpdateAsync(int id, UserDto dto)
         {
+            var user = _mapper.Map<User>(dto);
             var userToUpdate = await GetByIdAsync(id);
             if (userToUpdate == null)
             {
@@ -47,7 +48,7 @@ namespace CrudApi.Repositories
             }
 
             userToUpdate.Username = user.Username;
-            userToUpdate.Password = user.Password;
+            userToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             _context.SaveChanges();
             return _mapper.Map<UserDto>(userToUpdate);
