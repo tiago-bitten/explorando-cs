@@ -10,6 +10,6 @@ namespace CrudApi.Repositories.Interfaces
         Task<User> FindById(int id);
         void Update(User user, int id);
         void Delete(User user);
-        User FindByUsername(string username);
+        Task<User> FindByUsername(string username);
     }
 }

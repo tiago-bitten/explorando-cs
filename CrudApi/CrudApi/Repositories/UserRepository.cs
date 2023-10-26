@@ -48,9 +48,9 @@ namespace CrudApi.Repositories
             _context.SaveChanges();
         }
 
-        public User FindByUsername(string username)
+        public async Task<User> FindByUsername(string username)
         {
-            return _context.Users.FirstOrDefault(u => u.Username == username);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
     }
 }

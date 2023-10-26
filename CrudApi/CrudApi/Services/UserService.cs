@@ -19,15 +19,16 @@ namespace CrudApi.Services
 
         public async Task<UserDto> Create(CreateUserDto dto)
         {
-            var existsUser = _userRepository.FindByUsername(dto.Username);
-            if (existsUser != null)
+            var existingUser = await _userRepository.FindByUsername(dto.Username);
+            if (existingUser != null)
             {
-                throw new Exception("User already exists");
+                throw new Exception("Username already exists");
             }
 
             var user = _mapper.Map<User>(dto);
-
+            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
             await _userRepository.Create(user);
+
             return _mapper.Map<UserDto>(user);
         }
 
@@ -53,9 +54,10 @@ namespace CrudApi.Services
             throw new NotImplementedException();
         }
 
-        public UserDto FindByUsername(string username)
+        public async Task<UserDto> FindByUsername(string username)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.FindByUsername(username);
+            return _mapper.Map<UserDto>(user);
         }
     }
 }
