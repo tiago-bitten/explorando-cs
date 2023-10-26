@@ -4,18 +4,13 @@ using CrudApi.Services.Interfaces;
 
 namespace CrudApi.Services
 {
-    public class AuthService : IAuthService
+    public class AuthService
     {
         private readonly IUserRepository _userRepository;
 
         public AuthService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-        }
-
-        public Task<TokenDto> LoginAsync(AuthDto dto)
-        {
-            return new 
         }
     }
 }

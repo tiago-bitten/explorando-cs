@@ -1,4 +1,5 @@
-﻿using CrudApi.DTOs;
+﻿using AutoMapper;
+using CrudApi.DTOs;
 using CrudApi.Models;
 using CrudApi.Repositories.Interfaces;
 using CrudApi.Services.Interfaces;
@@ -8,15 +9,28 @@ namespace CrudApi.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        public Task<UserDto> Create(UserDto dto)
+        public async Task<UserDto> Create(CreateUserDto dto)
         {
-            throw new NotImplementedException();
+            User existsUser = await _userRepository.GetUserByUsernameAsync(dto.Username);
+            if (existsUser != null)
+            {
+                throw new Exception("Username already exists");
+            }
+
+            User user = _mapper.Map<User>(dto);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
+            _userRepository.CreateAsync(user);
+
+            return _mapper.Map<UserDto>(user);
         }
 
         public Task<UserDto> Delete(int id)
@@ -36,12 +50,17 @@ namespace CrudApi.Services
 
         public Task<User> GetUserByUsername(string username)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUserByUsernameAsync(username);
         }
 
         public Task<UserDto> Update(int id, UserDto dto)
         {
-            throw new NotImplementedException();
+            var userToUpdate = _userRepository.GetByIdAsync(id);
+            if (userToUpdate == null)
+            {
+                throw new Exception("User not found");
+            }
+
         }
     }
 }

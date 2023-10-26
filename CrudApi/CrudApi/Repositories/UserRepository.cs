@@ -19,37 +19,28 @@ namespace CrudApi.Repositories
             _mapper = mapper;
         }
 
-        public async Task<UserDto> CreateAsync(User user)
+        public void CreateAsync(User user)
         {
-
-        }
-
-        public async Task<List<UserDto>> GetAllAsync()
-        {
-            return _mapper.Map<List<UserDto>>(await _context.Users.ToListAsync());
-        }
-
-        public async Task<UserDto> GetByIdAsync(int id)
-        {
-            return _mapper.Map<UserDto>(await _context.Users.FindAsync(id));
-        }
-
-        public async Task<UserDto> UpdateAsync(int id, UserDto dto)
-        {
-            var user = _mapper.Map<User>(dto);
-            var userToUpdate = await GetByIdAsync(id);
-            if (userToUpdate == null)
-            {
-                throw new Exception("User not found");
-            }
-
-            userToUpdate.Username = user.Username;
-            userToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
+            _context.Users.Add(user);
             _context.SaveChanges();
-            return _mapper.Map<UserDto>(userToUpdate);
         }
-        public async Task<UserDto> DeleteAsync(int id)
+
+        public async Task<IEnumerable<User>> GetAllAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<User> GetByIdAsync(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+        public void UpdateAsync(User user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+        public async void DeleteAsync(int id)
         {
             var userToDelete = await _context.Users.FindAsync(id);
 
@@ -60,11 +51,9 @@ namespace CrudApi.Repositories
 
             _context.Users.Remove(userToDelete);
             _context.SaveChanges();
-
-            return _mapper.Map<UserDto>(userToDelete);
         }
 
-        public async Task<User> GetByUsernameAsync(string username)
+        public async Task<User> GetUserByUsernameAsync(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }

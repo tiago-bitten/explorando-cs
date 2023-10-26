@@ -2,6 +2,8 @@ using CrudApi.Data;
 using CrudApi.Mappings;
 using CrudApi.Repositories;
 using CrudApi.Repositories.Interfaces;
+using CrudApi.Services;
+using CrudApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddDbContext<CrudApiContext>(options =>
 {

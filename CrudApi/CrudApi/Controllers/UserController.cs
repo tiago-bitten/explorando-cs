@@ -2,6 +2,7 @@
 using CrudApi.Models;
 using CrudApi.Repositories;
 using CrudApi.Repositories.Interfaces;
+using CrudApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrudApi.Controllers
@@ -10,41 +11,37 @@ namespace CrudApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserService userService)
         {
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<UserDto>>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(await _userRepository.GetAllAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _userRepository.GetByIdAsync(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult<UserDto>> Create([FromBody] User user)
+        public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
         {
-            return Created("", await _userRepository.CreateAsync(user));
+            return Created("", await _userService.Create(dto));
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UserDto>> Update(int id, [FromBody] UserDto dto)
+        public async Task<IActionResult> Update(int id, [FromBody] UserDto dto)
         {
-            return Ok(await _userRepository.UpdateAsync(id, dto));
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserDto>> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await _userRepository.DeleteAsync(id));
         }
     }
 }
