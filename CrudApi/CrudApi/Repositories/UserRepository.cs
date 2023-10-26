@@ -19,43 +19,38 @@ namespace CrudApi.Repositories
             _mapper = mapper;
         }
 
-        public void CreateAsync(User user)
+        public async Task Create(User user)
         {
-            _context.Users.Add(user);
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public void Delete(User user)
+        {
+            _context.Users.Remove(user);
             _context.SaveChanges();
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public IEnumerable<User> FindAll()
         {
-            return await _context.Users.ToListAsync();
+            return _context.Users.ToList();
         }
 
-        public async Task<User> GetByIdAsync(int id)
+        public User FindById(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return _context.Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public void UpdateAsync(User user)
+        public void Update(User user, int id)
         {
-            _context.Users.Update(user);
-            _context.SaveChanges();
-        }
-        public async void DeleteAsync(int id)
-        {
-            var userToDelete = await _context.Users.FindAsync(id);
-
-            if (userToDelete == null)
-            {
-                throw new Exception("User not found");
-            }
-
-            _context.Users.Remove(userToDelete);
+            var userToUpdate = FindById(id);
+            _context.Entry(userToUpdate).CurrentValues.SetValues(user);
             _context.SaveChanges();
         }
 
-        public async Task<User> GetUserByUsernameAsync(string username)
+        public User FindByUsername(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            return _context.Users.FirstOrDefault(u => u.Username == username);
         }
     }
 }

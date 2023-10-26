@@ -19,48 +19,41 @@ namespace CrudApi.Services
 
         public async Task<UserDto> Create(CreateUserDto dto)
         {
-            User existsUser = await _userRepository.GetUserByUsernameAsync(dto.Username);
+            var existsUser = _userRepository.FindByUsername(dto.Username);
             if (existsUser != null)
             {
-                throw new Exception("Username already exists");
+                throw new Exception("User already exists");
             }
 
-            User user = _mapper.Map<User>(dto);
-            user.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+            var user = _mapper.Map<User>(dto);
 
-            _userRepository.CreateAsync(user);
-
+            await _userRepository.Create(user);
             return _mapper.Map<UserDto>(user);
         }
 
-        public Task<UserDto> Delete(int id)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<UserDto>> GetAll()
+        public UserDto FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<UserDto> GetById(int id)
+        public IEnumerable<UserDto> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<User> GetUserByUsername(string username)
+        public UserDto Update(UpdateUserDto dto)
         {
-            return _userRepository.GetUserByUsernameAsync(username);
+            throw new NotImplementedException();
         }
 
-        public Task<UserDto> Update(int id, UserDto dto)
+        public UserDto FindByUsername(string username)
         {
-            var userToUpdate = _userRepository.GetByIdAsync(id);
-            if (userToUpdate == null)
-            {
-                throw new Exception("User not found");
-            }
-
+            throw new NotImplementedException();
         }
     }
 }

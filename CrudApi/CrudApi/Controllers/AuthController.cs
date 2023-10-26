@@ -1,4 +1,5 @@
-﻿using CrudApi.Services.Interfaces;
+﻿using CrudApi.DTOs;
+using CrudApi.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

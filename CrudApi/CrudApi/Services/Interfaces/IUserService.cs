@@ -6,10 +6,10 @@ namespace CrudApi.Services.Interfaces
     public interface IUserService
     {
         Task<UserDto> Create(CreateUserDto dto);
-        Task<IEnumerable<UserDto>> GetAll();
-        Task<UserDto> GetById(int id);
-        Task<UserDto> Update(int id, UserDto dto);
-        Task<UserDto> Delete(int id);
-        Task<User> GetUserByUsername(string username);
+        UserDto Update(UpdateUserDto dto);
+        void Delete(int id);
+        IEnumerable<UserDto> GetAll();
+        UserDto FindById(int id);
+        UserDto FindByUsername(string username);
     }
 }

@@ -9,6 +9,7 @@ namespace CrudApi.Mappings
         public EntitiesToDtoMappingProfile()
         {
             CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, CreateUserDto>().ReverseMap();
         }
     }
 }
