@@ -19,9 +19,9 @@ namespace CrudApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> FindAll()
         {
-            throw new NotImplementedException();
+            return Ok(await _userService.FindAll());
         }
 
         [HttpGet("{id}")]

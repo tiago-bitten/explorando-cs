@@ -41,9 +41,10 @@ namespace CrudApi.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserDto> GetAll()
+        public async Task<IEnumerable<UserDto>> FindAll()
         {
-            throw new NotImplementedException();
+            var users = await _userRepository.FindAll();
+            return _mapper.Map<IEnumerable<UserDto>>(users);
         }
 
         public UserDto Update(UpdateUserDto dto)

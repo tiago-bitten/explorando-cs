@@ -31,9 +31,9 @@ namespace CrudApi.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> FindAll()
+        public async Task<IEnumerable<User>> FindAll()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
         }
 
         public User FindById(int id)
