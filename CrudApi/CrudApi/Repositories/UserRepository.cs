@@ -25,10 +25,10 @@ namespace CrudApi.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(User user)
+        public async Task Delete(User user)
         {
             _context.Users.Remove(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<User>> FindAll()
@@ -41,11 +41,14 @@ namespace CrudApi.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public void Update(User user, int id)
+        public async Task Update(User user, int id)
         {
-            var userToUpdate = FindById(id);
-            _context.Entry(userToUpdate).CurrentValues.SetValues(user);
-            _context.SaveChanges();
+            var userToUpdate = await FindById(id);
+            
+            userToUpdate.Username = user.Username;
+            userToUpdate.Password = user.Password;
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<User> FindByUsername(string username)

@@ -32,9 +32,15 @@ namespace CrudApi.Services
             return _mapper.Map<UserDto>(user);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.FindById(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            await _userRepository.Delete(user);
         }
 
         public async Task<UserDto> FindById(int id)
@@ -49,9 +55,10 @@ namespace CrudApi.Services
             return _mapper.Map<IEnumerable<UserDto>>(users.Skip(skip).Take(take));
         }
 
-        public UserDto Update(UpdateUserDto dto)
+        public async Task Update(UpdateUserDto dto, int id)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<User>(dto);
+            await _userRepository.Update(user, id);
         }
 
         public async Task<UserDto> FindByUsername(string username)

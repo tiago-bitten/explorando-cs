@@ -38,15 +38,17 @@ namespace CrudApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] UserDto dto)
+        public async Task<IActionResult> Update([FromBody] UpdateUserDto dto, int id)
         {
-            throw new NotImplementedException();
+            await _userService.Update(dto, id);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            await _userService.Delete(id);
+            return NoContent();
         }
     }
 }
