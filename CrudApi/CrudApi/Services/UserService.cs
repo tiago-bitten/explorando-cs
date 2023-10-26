@@ -27,6 +27,7 @@ namespace CrudApi.Services
 
             var user = _mapper.Map<User>(dto);
             user.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
             await _userRepository.Create(user);
 
             return _mapper.Map<UserDto>(user);
@@ -58,6 +59,8 @@ namespace CrudApi.Services
         public async Task Update(UpdateUserDto dto, int id)
         {
             var user = _mapper.Map<User>(dto);
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
             await _userRepository.Update(user, id);
         }
 
