@@ -21,11 +21,7 @@ namespace CrudApi.Repositories
 
         public async Task<UserDto> CreateAsync(User user)
         {
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return _mapper.Map<UserDto>(user);
         }
 
         public async Task<List<UserDto>> GetAllAsync()
@@ -66,6 +62,11 @@ namespace CrudApi.Repositories
             _context.SaveChanges();
 
             return _mapper.Map<UserDto>(userToDelete);
+        }
+
+        public async Task<User> GetByUsernameAsync(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
     }
 }

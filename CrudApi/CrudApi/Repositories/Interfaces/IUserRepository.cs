@@ -10,6 +10,6 @@ namespace CrudApi.Repositories.Interfaces
         Task<UserDto> CreateAsync(User user);
         Task<UserDto> UpdateAsync(int id, UserDto dto);
         Task<UserDto> DeleteAsync(int id);
-
+        Task<User> GetByUsernameAsync(string username);
     }
 }

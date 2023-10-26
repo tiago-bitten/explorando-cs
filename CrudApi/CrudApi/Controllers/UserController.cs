@@ -23,6 +23,12 @@ namespace CrudApi.Controllers
             return Ok(await _userRepository.GetAllAsync());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDto>> GetById(int id)
+        {
+            return Ok(await _userRepository.GetByIdAsync(id));
+        }
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> Create([FromBody] User user)
         {
