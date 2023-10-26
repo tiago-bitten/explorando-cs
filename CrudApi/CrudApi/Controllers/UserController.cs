@@ -25,9 +25,9 @@ namespace CrudApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> FindById(int id)
         {
-            throw new NotImplementedException();
+            return Ok(await _userService.FindById(id));
         }
 
         [HttpPost]

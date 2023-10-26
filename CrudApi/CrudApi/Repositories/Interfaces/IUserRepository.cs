@@ -7,7 +7,7 @@ namespace CrudApi.Repositories.Interfaces
     {
         Task Create(User user);
         Task<IEnumerable<User>> FindAll();
-        User FindById(int id);
+        Task<User> FindById(int id);
         void Update(User user, int id);
         void Delete(User user);
         User FindByUsername(string username);

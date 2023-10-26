@@ -36,9 +36,9 @@ namespace CrudApi.Repositories
             return await _context.Users.ToListAsync();
         }
 
-        public User FindById(int id)
+        public async Task<User> FindById(int id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public void Update(User user, int id)

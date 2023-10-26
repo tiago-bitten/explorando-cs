@@ -9,7 +9,7 @@ namespace CrudApi.Services.Interfaces
         UserDto Update(UpdateUserDto dto);
         void Delete(int id);
         Task<IEnumerable<UserDto>> FindAll();
-        UserDto FindById(int id);
+        Task<UserDto> FindById(int id);
         UserDto FindByUsername(string username);
     }
 }
