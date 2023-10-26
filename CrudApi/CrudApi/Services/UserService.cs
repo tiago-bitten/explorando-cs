@@ -64,10 +64,10 @@ namespace CrudApi.Services
             await _userRepository.Update(user, id);
         }
 
-        public async Task<UserDto> FindByUsername(string username)
+        public async Task<User> FindByUsername(string username)
         {
             var user = await _userRepository.FindByUsername(username);
-            return _mapper.Map<UserDto>(user);
+            return user;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace CrudApi.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] AuthDto dto)
         {
-            var token = await _authService.LoginAsync(dto.Username, dto.Password);
+            var token = await _authService.LoginAsync(dto);
             return Ok(token);
         }
     }
