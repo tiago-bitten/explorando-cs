@@ -19,9 +19,10 @@ namespace CrudApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> FindAll()
+        public async Task<IActionResult> FindAll([FromQuery] int skip = 0,
+            [FromQuery] int take = 10)
         {
-            return Ok(await _userService.FindAll());
+            return Ok(await _userService.FindAll(skip, take));
         }
 
         [HttpGet("{id}")]

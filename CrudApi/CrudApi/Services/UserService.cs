@@ -42,10 +42,10 @@ namespace CrudApi.Services
             return _mapper.Map<UserDto>(user);
         }
 
-        public async Task<IEnumerable<UserDto>> FindAll()
+        public async Task<IEnumerable<UserDto>> FindAll(int skip, int take)
         {
             var users = await _userRepository.FindAll();
-            return _mapper.Map<IEnumerable<UserDto>>(users);
+            return _mapper.Map<IEnumerable<UserDto>>(users.Skip(skip).Take(take));
         }
 
         public UserDto Update(UpdateUserDto dto)
