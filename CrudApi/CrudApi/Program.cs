@@ -22,7 +22,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<CrudApiContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
+    options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
 });
 
 builder.Services.AddAutoMapper(typeof(EntitiesToDtoMappingProfile));

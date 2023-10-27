@@ -4,6 +4,6 @@ namespace CrudApi.Services.Interfaces
 {
     public interface IAuthService
     {
-        Task<TokenDto> LoginAsync(AuthDto dto);
+        Task<TokenDto?> LoginAsync(AuthDto dto);
     }
 }
