@@ -1,13 +1,23 @@
-﻿using EeFee.Models;
+﻿using EeFee.Data;
+using EeFee.Models;
 using EeFee.Repositories.Interfaces;
+using System.Runtime.CompilerServices;
 
 namespace EeFee.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Task CreateAsync(User user)
+        private readonly EeFeeContext _context;
+
+        public UserRepository(EeFeeContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task CreateAsync(User user)
+        {
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
         }
 
         public Task DeleteAsync(User user)
