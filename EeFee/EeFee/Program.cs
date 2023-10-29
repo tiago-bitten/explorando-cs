@@ -1,4 +1,5 @@
 using EeFee.Data;
+using EeFee.Mappings;
 using EeFee.Repositories;
 using EeFee.Repositories.Interfaces;
 using EeFee.Services;
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<EeFeeContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 var app = builder.Build();
 
