@@ -30,3 +30,10 @@ C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\obj\Debug\net6.0\refint\E
 C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\obj\Debug\net6.0\EeFee.pdb
 C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\obj\Debug\net6.0\EeFee.genruntimeconfig.cache
 C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\obj\Debug\net6.0\ref\EeFee.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Npgsql.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Humanizer.dll
+C:\Users\teste\Documents\CSHARP\explorando\EeFee\EeFee\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

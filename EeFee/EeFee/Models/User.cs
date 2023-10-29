@@ -1,9 +1,16 @@
-﻿namespace EeFee.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EeFee.Models
 {
     public class User
     {
-        private int Id { get; set; }
-        private string Username { get; set; }
-        private string Password { get; set; }
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

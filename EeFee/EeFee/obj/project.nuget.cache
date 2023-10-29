@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "GZKNA10V/EAKDu6qco95mRW6RNgiImnJEDUJrG4NTM/ue9JDO7DCh5hzQBh6BySl1myq7fKkRqgI6u1m4nLuWA==",
+  "dgSpecHash": "WkbuDbNSdQl4jgCKdSgWYuAS9a3HDfHvpnzgzHa0iXgo+xsAwgMTACDX2Gz9B7CryT5AXWMp76xbBff3cLhd0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\explorando\\EeFee\\EeFee\\EeFee.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\teste\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.0\\microsoft.entityframeworkcore.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.0\\microsoft.entityframeworkcore.analyzers.6.0.0.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.0\\microsoft.entityframeworkcore.design.6.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.0\\microsoft.entityframeworkcore.relational.6.0.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
