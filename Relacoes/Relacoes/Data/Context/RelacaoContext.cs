@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Relacoes.Models;
 
 namespace Relacoes.Data.Context
 {
@@ -9,6 +10,11 @@ namespace Relacoes.Data.Context
         }
 
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Book> Books { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); 
+
+        }
     }
 }

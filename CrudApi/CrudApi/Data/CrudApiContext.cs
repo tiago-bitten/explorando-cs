@@ -10,6 +10,7 @@ namespace CrudApi.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Models.Todo> Todos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
