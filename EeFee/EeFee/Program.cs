@@ -1,4 +1,8 @@
 using EeFee.Data;
+using EeFee.Repositories;
+using EeFee.Repositories.Interfaces;
+using EeFee.Services;
+using EeFee.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +16,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<EeFeeContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
