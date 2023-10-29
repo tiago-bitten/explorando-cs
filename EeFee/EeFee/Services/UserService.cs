@@ -1,4 +1,6 @@
-﻿using EeFee.Models;
+﻿using AutoMapper;
+using EeFee.DTOs;
+using EeFee.Models;
 using EeFee.Repositories.Interfaces;
 using EeFee.Services.Interfaces;
 
@@ -8,15 +10,18 @@ namespace EeFee.Services
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        public Task CreateAsync(User user)
+        public async Task CreateAsync(CreateUserDTO dto)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<User>(dto);
+            await _userRepository.CreateAsync(user);
         }
 
         public Task DeleteAsync(User user)
