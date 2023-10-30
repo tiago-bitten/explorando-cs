@@ -17,5 +17,8 @@ namespace EeFee.Models
         [Required]
         [Column("password")]
         public string Password { get; set; }
+
+        public int PositionId { get; set; }
+        public IEnumerable<Position> Positions { get; set; }
     }
 }
