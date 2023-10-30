@@ -1,6 +1,7 @@
 ﻿using EeFee.Data;
 using EeFee.Models;
 using EeFee.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
 namespace EeFee.Repositories
@@ -30,9 +31,9 @@ namespace EeFee.Repositories
             return await _context.Users.FindAsync(id);
         }
 
-        public Task<User> FindByUsernameAsync(string username)
+        public async Task<User> FindByUsernameAsync(string username)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
         public Task UpdateAsync(User user)

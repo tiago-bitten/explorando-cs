@@ -20,6 +20,12 @@ namespace EeFee.Services
 
         public async Task<UserDTO> CreateAsync(CreateUserDTO dto)
         {
+            var userDTO = await FindByUsernameAsync(dto.Username);
+            if (userDTO != null)
+            {
+                throw new Exception("User already exists");
+            }
+
             var user = _mapper.Map<User>(dto);
             await _userRepository.CreateAsync(user);
 
@@ -42,9 +48,9 @@ namespace EeFee.Services
             return _mapper.Map<UserDTO>(user);
         }
 
-        public Task<UserDTO> FindByUsernameAsync(string username)
+        public async Task<UserDTO> FindByUsernameAsync(string username)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<UserDTO>(await _userRepository.FindByUsernameAsync(username));
         }
 
         public Task UpdateAsync(User user)
