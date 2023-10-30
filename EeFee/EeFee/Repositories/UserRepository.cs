@@ -21,9 +21,9 @@ namespace EeFee.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(User user)
+        public async Task DeleteAsync(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(user);
         }
 
         public async Task<User> FindByIdAsync(int id)

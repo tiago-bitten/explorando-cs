@@ -24,5 +24,12 @@ namespace EeFee.Controllers
             var userDTO = await _userService.CreateAsync(dto);
             return CreatedAtAction(nameof(Create), userDTO.Id, userDTO);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _userService.DeleteAsync(id);
+            return NoContent();
+        }
     }
 }

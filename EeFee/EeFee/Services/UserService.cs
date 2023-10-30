@@ -34,9 +34,15 @@ namespace EeFee.Services
             return _mapper.Map<UserDTO>(user);
         }
 
-        public Task DeleteAsync(User user)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            await _userRepository.DeleteAsync(user);
         }
 
         public async Task<UserDTO> FindByIdAsync(int id)
