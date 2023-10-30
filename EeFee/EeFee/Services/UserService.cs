@@ -42,7 +42,7 @@ namespace EeFee.Services
                 throw new Exception("User not found");
             }
 
-            await _userRepository.DeleteAsync(user);
+            _userRepository.DeleteAsync(user);
         }
 
         public async Task<UserDTO> FindByIdAsync(int id)
