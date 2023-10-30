@@ -29,7 +29,7 @@ namespace EeFee.Services
             throw new NotImplementedException();
         }
 
-        public async Task<User> FindByIdAsync(int id)
+        public async Task<UserDTO> FindByIdAsync(int id)
         {
             var user = await _userRepository.FindByIdAsync(id);
             if (user == null)
@@ -37,10 +37,10 @@ namespace EeFee.Services
                 throw new Exception("User not found");
             }
 
-
+            return _mapper.Map<UserDTO>(user);
         }
 
-        public Task<User> FindByUsernameAsync(string username)
+        public Task<UserDTO> FindByUsernameAsync(string username)
         {
             throw new NotImplementedException();
         }
