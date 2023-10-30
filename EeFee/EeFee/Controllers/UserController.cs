@@ -19,9 +19,9 @@ namespace EeFee.Controllers
         }
 
         [HttpPost]
-        public Task<IActionResult> Create([FromBody] CreateUserDTO dto)
+        public async Task<IActionResult> Create([FromBody] CreateUserDTO dto)
         {
-            return Create(dto);
+            return CreatedAtAction();
         }
     }
 }
