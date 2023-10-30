@@ -19,6 +19,6 @@ namespace EeFee.Models
         public string Password { get; set; }
 
         public int PositionId { get; set; }
-        public IEnumerable<Position> Positions { get; set; }
+        public Position Position { get; set; }
     }
 }

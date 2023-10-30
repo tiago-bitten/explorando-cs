@@ -14,7 +14,6 @@ namespace EeFee.Models
         [Column("name")]
         public string Name { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public IEnumerable<User> Users { get; set; }
     }
 }
