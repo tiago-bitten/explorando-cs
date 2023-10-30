@@ -29,9 +29,15 @@ namespace EeFee.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> FindByIdAsync(int id)
+        public async Task<User> FindByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+
         }
 
         public Task<User> FindByUsernameAsync(string username)

@@ -8,7 +8,7 @@ namespace EeFee.Services.Interfaces
         Task CreateAsync(CreateUserDTO dto);
         Task DeleteAsync(User user);
         Task UpdateAsync(User user);
-        Task<User> FindByIdAsync(int id);
-        Task<User> FindByUsernameAsync(string username);
+        Task<UserDTO> FindByIdAsync(int id);
+        Task<UserDTO> FindByUsernameAsync(string username);
     }
 }
