@@ -32,6 +32,11 @@ namespace EeFee.Repositories
             return await _context.Users.FindAsync(id);
         }
 
+        public async Task<IEnumerable<User>> FindAllAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
         public async Task<User> FindByUsernameAsync(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);

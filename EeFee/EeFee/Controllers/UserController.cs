@@ -1,8 +1,5 @@
-﻿using EeFee.Data;
-using EeFee.DTOs;
-using EeFee.Models;
+﻿using EeFee.DTOs;
 using EeFee.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EeFee.Controllers
@@ -16,6 +13,13 @@ namespace EeFee.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int skip = 0,
+            [FromQuery] int take = 10)
+        {
+            return Ok(await _userService.FindAllAsync(skip, take));
         }
 
         [HttpPost]

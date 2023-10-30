@@ -8,6 +8,7 @@ namespace EeFee.Repositories.Interfaces
         void DeleteAsync(User user);
         Task UpdateAsync(User user);
         Task<User> FindByIdAsync(int id);
+        Task<IEnumerable<User>> FindAllAsync();
         Task<User> FindByUsernameAsync(string username);
     }
 }

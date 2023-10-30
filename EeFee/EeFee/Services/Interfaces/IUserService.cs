@@ -9,6 +9,7 @@ namespace EeFee.Services.Interfaces
         Task DeleteAsync(int id);
         Task UpdateAsync(User user);
         Task<UserDTO> FindByIdAsync(int id);
+        Task<IEnumerable<UserDTO>> FindAllAsync(int skip, int take);
         Task<UserDTO> FindByUsernameAsync(string username);
     }
 }

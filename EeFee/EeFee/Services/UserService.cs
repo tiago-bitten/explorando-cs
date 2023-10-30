@@ -45,6 +45,12 @@ namespace EeFee.Services
             _userRepository.DeleteAsync(user);
         }
 
+        public async Task<IEnumerable<UserDTO>> FindAllAsync(int skip, int take)
+        {
+            var users = await _userRepository.FindAllAsync();
+            return _mapper.Map<IEnumerable<UserDTO>>(users.Skip(skip).Take(take));
+        }
+
         public async Task<UserDTO> FindByIdAsync(int id)
         {
             var user = await _userRepository.FindByIdAsync(id);
