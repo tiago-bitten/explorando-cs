@@ -11,7 +11,11 @@ namespace EeFee.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Position>()
+                .HasMany(p => p.Users)
+                .WithOne(u => u.Position)
+                .HasForeignKey(u => u.PositionId)
+                .HasPrincipalKey(p => p.Id);
         }
 
         public DbSet<User> Users { get; set; }
