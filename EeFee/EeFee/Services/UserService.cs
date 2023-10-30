@@ -37,11 +37,6 @@ namespace EeFee.Services
         public async Task DeleteAsync(int id)
         {
             var user = await _userRepository.FindByIdAsync(id);
-            if (user == null)
-            {
-                throw new Exception("User not found");
-            }
-
             _userRepository.DeleteAsync(user);
         }
 

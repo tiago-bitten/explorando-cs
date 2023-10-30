@@ -16,10 +16,16 @@ namespace EeFee.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int skip = 0,
+        public async Task<IActionResult> FindAll([FromQuery] int skip = 0,
             [FromQuery] int take = 10)
         {
             return Ok(await _userService.FindAllAsync(skip, take));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> FindById(int id)
+        {
+            return Ok(await _userService.FindByIdAsync(id));
         }
 
         [HttpPost]
