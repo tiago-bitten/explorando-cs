@@ -21,7 +21,8 @@ namespace EeFee.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserDTO dto)
         {
-            return CreatedAtAction();
+            var userDTO = await _userService.CreateAsync(dto);
+            return CreatedAtAction(nameof(Create), userDTO.Id, userDTO);
         }
     }
 }

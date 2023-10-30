@@ -18,10 +18,12 @@ namespace EeFee.Services
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(CreateUserDTO dto)
+        public async Task<UserDTO> CreateAsync(CreateUserDTO dto)
         {
             var user = _mapper.Map<User>(dto);
             await _userRepository.CreateAsync(user);
+
+            return _mapper.Map<UserDTO>(user);
         }
 
         public Task DeleteAsync(User user)

@@ -9,6 +9,7 @@ namespace EeFee.Mappings
         public EntitiesToDTOMappingProfile()
         {
             CreateMap<User, CreateUserDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
         }
     }
 }

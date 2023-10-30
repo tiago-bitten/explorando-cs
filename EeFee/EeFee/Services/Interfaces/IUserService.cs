@@ -5,7 +5,7 @@ namespace EeFee.Services.Interfaces
 {
     public interface IUserService
     {
-        Task CreateAsync(CreateUserDTO dto);
+        Task<UserDTO> CreateAsync(CreateUserDTO dto);
         Task DeleteAsync(User user);
         Task UpdateAsync(User user);
         Task<UserDTO> FindByIdAsync(int id);
