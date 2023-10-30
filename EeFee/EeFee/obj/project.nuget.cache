@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "P3aaUfcnRiW3p7Ac9/BK43fZgZjgU/y6/aVM5aOC7qgNQxut2IZ6df/CIwCkB9NbT72XZWH8/1Ri9jCbQJC6jA==",
+  "dgSpecHash": "6TVDubfF9rZnyURjHB4plEHn4ro6AojSY7elryi+jKc2IP9pPn2VflhJV7EW+CjsvSxvyYUyqDBUAANZab+tug==",
   "success": true,
   "projectFilePath": "C:\\Users\\teste\\Documents\\CSHARP\\explorando\\EeFee\\EeFee\\EeFee.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\teste\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\teste\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\teste\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",

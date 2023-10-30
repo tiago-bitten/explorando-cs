@@ -26,6 +26,8 @@ namespace EeFee.Services
                 throw new Exception("User already exists");
             }
 
+            dto.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
             var user = _mapper.Map<User>(dto);
             await _userRepository.CreateAsync(user);
 
