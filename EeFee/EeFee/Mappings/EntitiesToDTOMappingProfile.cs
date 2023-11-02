@@ -10,6 +10,9 @@ namespace EeFee.Mappings
         {
             CreateMap<User, CreateUserDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
+
+            CreateMap<Position, CreatePositionDTO>().ReverseMap();
+            CreateMap<Position, PositionDTO>().ReverseMap();
         }
     }
 }

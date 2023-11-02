@@ -7,6 +7,7 @@ namespace EeFee.Models
     public class User
     {
         [Key]
+        [Required]
         [Column("id")]
         public int Id { get; set; }
 
@@ -19,6 +20,6 @@ namespace EeFee.Models
         public string Password { get; set; }
 
         public int PositionId { get; set; }
-        public Position Position { get; set; }
+        public virtual Position Position { get; set; }
     }
 }

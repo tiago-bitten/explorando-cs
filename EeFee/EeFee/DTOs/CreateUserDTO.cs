@@ -9,5 +9,8 @@ namespace EeFee.DTOs
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public int PositionId { get; set; }
     }
 }
