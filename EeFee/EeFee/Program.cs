@@ -22,6 +22,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<IPositionRepository, PositionRepository>();
+
+builder.Services.AddScoped<IPositionService, PositionService>();
+
 builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 var app = builder.Build();

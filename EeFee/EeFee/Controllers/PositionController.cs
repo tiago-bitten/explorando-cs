@@ -4,7 +4,8 @@ namespace EeFee.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class PositionController
+    public class PositionController : ControllerBase
     {
+        private readonly IPositionService _positionService;
     }
 }
