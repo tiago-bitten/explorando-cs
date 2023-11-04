@@ -32,7 +32,7 @@ namespace EeFee.Controllers
         public async Task<IActionResult> Create([FromBody] CreateUserDTO dto)
         {
             var userDTO = await _userService.CreateAsync(dto);
-            return CreatedAtAction(nameof(Create), userDTO.UserId, userDTO);
+            return CreatedAtAction(nameof(Create), userDTO.Id, userDTO);
         }
 
         [HttpDelete("{id}")]

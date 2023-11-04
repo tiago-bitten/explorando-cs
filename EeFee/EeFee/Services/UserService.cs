@@ -35,7 +35,7 @@ namespace EeFee.Services
             var user = _mapper.Map<User>(dto);
             var position = _mapper.Map<Position>(positionDTO);
 
-            user.Position = position;
+            user.PositionId = position.Id;
 
             await _userRepository.CreateAsync(user);
 

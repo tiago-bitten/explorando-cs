@@ -11,10 +11,7 @@ namespace EeFee.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Position)
-                .WithMany(p => p.Users)
-                .HasForeignKey(u => u.PositionId);
+            base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
