@@ -31,7 +31,7 @@ namespace EeFee.Repositories
             return await _context.Positions.ToListAsync();
         }
 
-        public async Task<Position?> FindByIdAsync(int id)
+        public async Task<Position> FindByIdAsync(int id)
         {
             return await _context.Positions.FindAsync(id);
         }

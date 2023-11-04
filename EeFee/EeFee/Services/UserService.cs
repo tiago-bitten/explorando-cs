@@ -10,11 +10,13 @@ namespace EeFee.Services
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly IPositionService _positionService;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IPositionService positionService, IMapper mapper)
         {
             _userRepository = userRepository;
+            _positionService = positionService;
             _mapper = mapper;
         }
 
@@ -26,9 +28,15 @@ namespace EeFee.Services
                 throw new Exception("User already exists");
             }
 
+            var positionDTO = await _positionService.FindByIdAsync(dto.PositionId);
+
             dto.Password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
             var user = _mapper.Map<User>(dto);
+            var position = _mapper.Map<Position>(positionDTO);
+
+            user.Position = position;
+
             await _userRepository.CreateAsync(user);
 
             return _mapper.Map<UserDTO>(user);

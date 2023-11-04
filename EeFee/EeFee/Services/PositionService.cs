@@ -35,9 +35,15 @@ namespace EeFee.Services
             throw new NotImplementedException();
         }
 
-        public Task<PositionDTO> FindByIdAsync(int id)
+        public async Task<PositionDTO> FindByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var position = await _positionRepository.FindByIdAsync(id);
+            if (position == null)
+            {
+                throw new Exception("Position was not found");
+            }
+
+            return _mapper.Map<PositionDTO>(position);
         }
 
         public Task UpdateAsync(PositionDTO dto)
