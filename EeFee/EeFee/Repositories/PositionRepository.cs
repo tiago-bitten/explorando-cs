@@ -40,5 +40,10 @@ namespace EeFee.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Position> FindByName(string name)
+        {
+            return await _context.Positions.FirstOrDefaultAsync(p => p.Name == name);
+        }
     }
 }

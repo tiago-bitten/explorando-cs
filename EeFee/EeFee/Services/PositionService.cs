@@ -19,6 +19,12 @@ namespace EeFee.Services
 
         public async Task<PositionDTO> CreateAsync(CreatePositionDTO dto)
         {
+            var existsPosition = await _positionRepository.FindByName(dto.Name);
+            if (existsPosition != null)
+            {
+                throw new Exception("Position already exists");
+            }
+
             var position = _mapper.Map<Position>(dto);
             await _positionRepository.CreateAsync(position);
 
@@ -49,6 +55,11 @@ namespace EeFee.Services
         public Task UpdateAsync(PositionDTO dto)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<PositionDTO> FindByName(string name)
+        {
+            return _mapper.Map<PositionDTO>(await _positionRepository.FindByName(name));
         }
     }
 }

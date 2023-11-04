@@ -9,5 +9,6 @@ namespace EeFee.Services.Interfaces
         Task UpdateAsync(PositionDTO dto);
         Task<PositionDTO> FindByIdAsync(int id);
         Task<IEnumerable<PositionDTO>> FindAllAsync(int skip, int take);
+        Task<PositionDTO> FindByName(string name);
     }
 }
