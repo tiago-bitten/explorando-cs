@@ -28,8 +28,8 @@ namespace EeFee.Controllers
             return Ok(await _userService.FindByIdAsync(id));
         }
 
-        [HttpGet("position")]
-        public async Task<IActionResult> FindByPosition([FromQuery] int positionId)
+        [HttpGet("position/{positionId}")]
+        public async Task<IActionResult> FindByPosition(int positionId)
         {
             return Ok(await _userService.FindByPosition(positionId));
         }
