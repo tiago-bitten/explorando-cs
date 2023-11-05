@@ -14,5 +14,7 @@ namespace EeFee.Models
         [Required]
         [Column("name")]
         public string Name { get; set; }
+
+        public virtual IEnumerable<User> Users { get; set; }
     }
 }

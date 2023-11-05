@@ -15,7 +15,8 @@ namespace EeFee.Mappings
                 opt => opt.MapFrom(user => user.Position));
 
             CreateMap<Position, CreatePositionDTO>().ReverseMap();
-            CreateMap<Position, PositionDTO>().ReverseMap();
+            CreateMap<Position, PositionDTO>()
+                .ReverseMap();
         }
     }
 }
