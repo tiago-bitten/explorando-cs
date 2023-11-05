@@ -8,6 +8,13 @@ namespace DemoIndentity.Services
 {
     public class TokenService
     {
+        private readonly IConfiguration _configuration;
+
+        public TokenService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public string GenerateToken(User user)
         {
             Claim[] claims = new Claim[]
@@ -17,7 +24,7 @@ namespace DemoIndentity.Services
                 new Claim(ClaimTypes.DateOfBirth, user.DateOfBirth.ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my-secret-key-1234"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SymmetricSecurityKey"]));
 
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
