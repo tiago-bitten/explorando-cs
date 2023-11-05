@@ -28,6 +28,12 @@ namespace EeFee.Controllers
             return Ok(await _userService.FindByIdAsync(id));
         }
 
+        [HttpGet("position")]
+        public async Task<IActionResult> FindByPosition([FromQuery] int positionId)
+        {
+            return Ok(await _userService.FindByPosition(positionId));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserDTO dto)
         {

@@ -46,5 +46,10 @@ namespace EeFee.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<User>> FindByPosition(int positionId)
+        {
+            return await _context.Users.Where(u => u.PositionId == positionId).ToListAsync();
+        }
     }
 }

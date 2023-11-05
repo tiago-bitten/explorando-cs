@@ -10,5 +10,6 @@ namespace EeFee.Repositories.Interfaces
         Task<User> FindByIdAsync(int id);
         Task<IEnumerable<User>> FindAllAsync();
         Task<User> FindByUsernameAsync(string username);
+        Task<IEnumerable<User>> FindByPosition(int positionId);
     }
 }

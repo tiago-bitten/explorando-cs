@@ -74,5 +74,16 @@ namespace EeFee.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<UserDTO>> FindByPosition(int positionId)
+        {
+            var users = await _userRepository.FindByPosition(positionId);
+            if (users == null)
+            {
+                throw new Exception("Users not found");
+            }
+
+            return _mapper.Map<IEnumerable<UserDTO>>(users);
+        }
     }
 }

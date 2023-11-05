@@ -11,5 +11,6 @@ namespace EeFee.Services.Interfaces
         Task<UserDTO> FindByIdAsync(int id);
         Task<IEnumerable<UserDTO>> FindAllAsync(int skip, int take);
         Task<UserDTO> FindByUsernameAsync(string username);
+        Task<IEnumerable<UserDTO>> FindByPosition(int positionId);
     }
 }
