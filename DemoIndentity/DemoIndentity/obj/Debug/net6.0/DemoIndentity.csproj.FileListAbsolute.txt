@@ -47,3 +47,8 @@ C:\CSHARP\explorando\DemoIndentity\DemoIndentity\obj\Debug\net6.0\refint\DemoInd
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\obj\Debug\net6.0\DemoIndentity.pdb
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\obj\Debug\net6.0\DemoIndentity.genruntimeconfig.cache
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\obj\Debug\net6.0\ref\DemoIndentity.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

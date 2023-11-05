@@ -1,5 +1,4 @@
 ﻿using DemoIndentity.Models;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,7 +8,7 @@ namespace DemoIndentity.Services
 {
     public class TokenService
     {
-        public void GenerateToken(User user)
+        public string GenerateToken(User user)
         {
             Claim[] claims = new Claim[]
             {
@@ -28,6 +27,8 @@ namespace DemoIndentity.Services
                  claims: claims,
                  signingCredentials: signingCredentials
                 );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

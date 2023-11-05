@@ -30,9 +30,7 @@ namespace DemoIndentity.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
-            await _userService.Login(dto);
-
-            return Ok("Logado com sucesso");
+            return Ok(await _userService.Login(dto));
         }
     }
 }

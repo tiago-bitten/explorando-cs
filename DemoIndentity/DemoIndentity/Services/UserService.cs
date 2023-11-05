@@ -36,7 +36,7 @@ namespace DemoIndentity.Services
             return user;
         }
 
-        public async Task Login(LoginDto dto)
+        public async Task<string> Login(LoginDto dto)
         {
             SignInResult result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
             
@@ -44,6 +44,10 @@ namespace DemoIndentity.Services
             {
                 throw new ApplicationException("Invalid login attempt");
             }
+
+            var user = _signInManager.UserManager.Users.FirstOrDefault(u => u.UserName == dto.Username);
+
+            return _tokenService.GenerateToken(user);
         }
     }
 }
