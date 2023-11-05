@@ -1,5 +1,7 @@
 using DemoTypingTest.Data;
+using DemoTypingTest.Models;
 using DemoTypingTest.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,16 @@ builder.Services.AddDbContext<DemoTypingTestDbContext>(options =>
 });
 
 builder.Services.AddScoped<UserService>();
+
+builder.Services
+    .AddIdentity<User, IdentityRole>(options =>
+    {
+        options.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<DemoTypingTestDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

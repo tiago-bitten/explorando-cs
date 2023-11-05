@@ -9,7 +9,7 @@ namespace DemoTypingTest.Profiles
         public UserProfile()
         {
             CreateMap<CreateUserDto, User>();
-            CreateMap<User, UserDto>();
+            CreateMap<User, ReadUserDto>();
         }
     }
 }
