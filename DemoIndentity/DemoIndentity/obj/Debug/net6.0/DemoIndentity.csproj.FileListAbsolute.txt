@@ -52,3 +52,6 @@ C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.Iden
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\CSHARP\explorando\DemoIndentity\DemoIndentity\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
