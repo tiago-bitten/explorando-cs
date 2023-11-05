@@ -1,5 +1,6 @@
 using DemoIndentity.Data;
 using DemoIndentity.Models;
+using DemoIndentity.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,8 @@ builder.Services
     .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 

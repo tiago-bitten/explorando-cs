@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DemoIndentity.Data.Dtos;
 using DemoIndentity.Models;
+using DemoIndentity.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,29 +12,19 @@ namespace DemoIndentity.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
+        private readonly UserService _userService;
 
-        public UserController(IMapper mapper, UserManager<User> userManager)
+        public UserController(UserService userService)
         {
-            _mapper = mapper;
-            _userManager = userManager;
+            _userService = userService;
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
         {
-            User user = _mapper.Map<User>(dto);
-            user.DateOfBirth = user.DateOfBirth.ToUniversalTime();
+            User user = await _userService.Create(dto);
 
-            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
-            
-            if (!result.Succeeded)
-            {
-                throw new ApplicationException(result.Errors.First().Description);
-            }
-
-            return Ok();
+            return CreatedAtAction(nameof(Create), new {id = user.Id}, user);
         }
     }
 }
