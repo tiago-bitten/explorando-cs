@@ -9,12 +9,15 @@ namespace DemoIndentity.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly TokenService _tokenService;
         private readonly IMapper _mapper;
 
-        public UserService(UserManager<User> userManager, SignInManager<User> signInManager,IMapper mapper)
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager, TokenService tokenService,
+            IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _tokenService = tokenService;
             _mapper = mapper;
         }
 
