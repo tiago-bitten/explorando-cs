@@ -8,11 +8,13 @@ namespace DemoIndentity.Services
     public class UserService
     {
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
 
-        public UserService(UserManager<User> userManager, IMapper mapper)
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager,IMapper mapper)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _mapper = mapper;
         }
 
@@ -29,6 +31,16 @@ namespace DemoIndentity.Services
             }
 
             return user;
+        }
+
+        public async Task Login(LoginDto dto)
+        {
+            SignInResult result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
+            
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException("Invalid login attempt");
+            }
         }
     }
 }

@@ -19,12 +19,20 @@ namespace DemoIndentity.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CreateUserDto dto)
         {
             User user = await _userService.Create(dto);
 
             return CreatedAtAction(nameof(Create), new {id = user.Id}, user);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
+        {
+            await _userService.Login(dto);
+
+            return Ok("Logado com sucesso");
         }
     }
 }
