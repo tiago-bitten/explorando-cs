@@ -26,7 +26,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 
 builder.Services
-    .AddIdentity<ApplicationUser, IdentityRole>(options =>
+    .AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
     {
         options.User.RequireUniqueEmail = true;
     })

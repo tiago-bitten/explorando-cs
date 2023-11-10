@@ -2,8 +2,9 @@
 
 namespace DemoTypingTest.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
+        public override int Id { get; set; }
         public string ProfileImageURL { get; set; }
         public virtual IEnumerable<Test> Tests { get; set; }
 
