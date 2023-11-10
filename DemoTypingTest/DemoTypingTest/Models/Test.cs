@@ -9,7 +9,7 @@ namespace DemoTypingTest.Models
         [Key]
         [Required]
         [Column("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [Column("text_test")]
@@ -38,7 +38,7 @@ namespace DemoTypingTest.Models
         [Required]
         [Column("user_id")]
         [ForeignKey("User")]
-        public string UserId { get; set; }
-        public virtual User User { get; set; }
+        public int UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

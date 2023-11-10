@@ -1,12 +1,13 @@
 ﻿using DemoTypingTest.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoTypingTest.Data
 {
-    public class DemoTypingTestDbContext : IdentityDbContext<User>
+    public class IdentityUserDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DemoTypingTestDbContext(DbContextOptions<DemoTypingTestDbContext> options)
+        public IdentityUserDbContext(DbContextOptions<IdentityUserDbContext> options)
             : base(options)
         {
         }
@@ -14,8 +15,10 @@ namespace DemoTypingTest.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+                       
         }
 
         public DbSet<Test> Tests { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
     }
 }

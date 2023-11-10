@@ -8,13 +8,12 @@ namespace DemoTypingTest.Services
 {
     public class TokenService
     {
-        public string GenerateToken(User user)
+        public string GenerateToken(ApplicationUser user)
         {
             Claim[] claims = new Claim[]
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
+                new Claim(ClaimTypes.Email, user.Email)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("anapata-123-ovo-123-123"));

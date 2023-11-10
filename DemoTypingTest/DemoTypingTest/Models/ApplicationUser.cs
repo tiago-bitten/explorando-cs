@@ -2,12 +2,12 @@
 
 namespace DemoTypingTest.Models
 {
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         public string ProfileImageURL { get; set; }
         public virtual IEnumerable<Test> Tests { get; set; }
 
-        public User() : base()
+        public ApplicationUser() : base()
         {
         }
     }

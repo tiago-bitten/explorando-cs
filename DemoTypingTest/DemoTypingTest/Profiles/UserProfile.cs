@@ -8,8 +8,8 @@ namespace DemoTypingTest.Profiles
     {
         public UserProfile()
         {
-            CreateMap<CreateUserDto, User>();
-            CreateMap<User, ReadUserDto>();
+            CreateMap<CreateUserDto, ApplicationUser>();
+            CreateMap<ApplicationUser, ReadUserDto>();
         }
     }
 }

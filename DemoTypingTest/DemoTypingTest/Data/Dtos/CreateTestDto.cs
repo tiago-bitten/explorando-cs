@@ -8,6 +8,6 @@
         public string IncorrectWords { get; set; }
         public string IncorrectCharacters { get; set; }
         public string Time { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

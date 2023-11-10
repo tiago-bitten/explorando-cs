@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DemoTypingTest.Migrations
 {
-    [DbContext(typeof(DemoTypingTestDbContext))]
+    [DbContext(typeof(IdentityUserDbContext))]
     [Migration("20231106031159_TableTest")]
     partial class TableTest
     {

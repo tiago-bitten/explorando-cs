@@ -6,10 +6,10 @@ namespace DemoTypingTest.Services
 {
     public class AuthService
     {
-        private readonly SignInManager<User> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly TokenService _tokenService;
 
-        public AuthService(SignInManager<User> signInManager, TokenService tokenService)
+        public AuthService(SignInManager<ApplicationUser> signInManager, TokenService tokenService)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
@@ -24,7 +24,7 @@ namespace DemoTypingTest.Services
                 throw new ApplicationException("Invalid login attempt.");
             }
 
-            User user = await _signInManager.UserManager.FindByNameAsync(dto.Username);
+            ApplicationUser user = await _signInManager.UserManager.FindByNameAsync(dto.Username);
 
             return new TokenDto
             {

@@ -8,12 +8,7 @@ namespace DemoTypingTest.Controllers
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly DemoTypingTestContext _context;
 
-        public TestController(DemoTypingTestContext context)
-        {
-            _context = context;
-        }
 
         [HttpPost]
         public IActionResult CreateTest([FromBody] CreateTestDto createTestDto)
@@ -28,8 +23,6 @@ namespace DemoTypingTest.Controllers
                 Time = int.Parse(createTestDto.Time),
                 UserId = createTestDto.UserId
             };
-            _context.Tests
-            _context.SaveChanges();
             return Ok();
         }
     }

@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DemoTypingTestDbContext>(options =>
+builder.Services.AddDbContext<IdentityUserDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
 });
@@ -26,11 +26,11 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 
 builder.Services
-    .AddIdentity<User, IdentityRole>(options =>
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
         options.User.RequireUniqueEmail = true;
     })
-    .AddEntityFrameworkStores<DemoTypingTestDbContext>()
+    .AddEntityFrameworkStores<IdentityUserDbContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
