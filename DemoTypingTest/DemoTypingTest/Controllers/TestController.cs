@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoTypingTest.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class TestController : ControllerBase

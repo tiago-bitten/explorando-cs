@@ -9,6 +9,7 @@ namespace DemoTypingTest.Profiles
         public TestProfile()
         {
             CreateMap<CreateTestDto, Test>();
+
             CreateMap<Test, ReadTestDto>()
                 .ForMember(dto => dto.User,
                 opt => opt.MapFrom(test => test.User));
