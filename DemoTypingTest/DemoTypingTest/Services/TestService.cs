@@ -36,5 +36,16 @@ namespace DemoTypingTest.Services
 
             return _mapper.Map<ReadTestDto>(test);
         }
+
+        public async Task<ReadTestDto> FindById(string id)
+        {
+            var test = await _testRepository.FindById(id);
+            if (test == null)
+            {
+                throw new ApplicationException("Test not found");
+            }
+
+            return _mapper.Map<ReadTestDto>(test);
+        }
     }
 }

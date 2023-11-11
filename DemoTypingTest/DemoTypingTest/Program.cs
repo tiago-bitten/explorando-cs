@@ -27,10 +27,12 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<TestService>();
+builder.Services.AddScoped<ScoreService>();
 
 // Repositories
-builder.Services.AddScoped<TestRepository>();
 builder.Services.AddScoped<ApplicationUserRepository>();
+builder.Services.AddScoped<TestRepository>();
+builder.Services.AddScoped<ScoreRepository>();
 
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>

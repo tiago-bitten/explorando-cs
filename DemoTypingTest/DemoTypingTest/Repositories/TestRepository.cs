@@ -17,5 +17,10 @@ namespace DemoTypingTest.Repositories
             await _context.Tests.AddAsync(test);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Test> FindById(string id)
+        {
+            return await _context.Tests.FindAsync(id);
+        }
     }
 }
