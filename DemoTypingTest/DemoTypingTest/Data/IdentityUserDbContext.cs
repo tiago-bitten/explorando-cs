@@ -18,7 +18,8 @@ namespace DemoTypingTest.Data
                        
         }
 
-        public DbSet<Test> Tests { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Score> Scores { get; set;}
     }
 }

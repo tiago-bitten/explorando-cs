@@ -90,14 +90,38 @@ namespace DemoTypingTest.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DemoTypingTest.Models.Test", b =>
+            modelBuilder.Entity("DemoTypingTest.Models.Score", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<double>("Accuracy")
+                        .HasColumnType("double precision")
+                        .HasColumnName("accuracy");
+
+                    b.Property<string>("TestId")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("test_id");
+
+                    b.Property<double>("Wpm")
+                        .HasColumnType("double precision")
+                        .HasColumnName("wpm");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId")
+                        .IsUnique();
+
+                    b.ToTable("tb_score");
+                });
+
+            modelBuilder.Entity("DemoTypingTest.Models.Test", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
+                        .HasColumnName("id");
 
                     b.Property<int>("IncorrectCharacters")
                         .HasColumnType("integer")
@@ -136,7 +160,7 @@ namespace DemoTypingTest.Migrations
                     b.ToTable("tb_test");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -268,6 +292,17 @@ namespace DemoTypingTest.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DemoTypingTest.Models.Score", b =>
+                {
+                    b.HasOne("DemoTypingTest.Models.Test", "Test")
+                        .WithOne("Score")
+                        .HasForeignKey("DemoTypingTest.Models.Score", "TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("DemoTypingTest.Models.Test", b =>
                 {
                     b.HasOne("DemoTypingTest.Models.ApplicationUser", "User")
@@ -281,7 +316,7 @@ namespace DemoTypingTest.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -308,7 +343,7 @@ namespace DemoTypingTest.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<string>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -333,6 +368,12 @@ namespace DemoTypingTest.Migrations
             modelBuilder.Entity("DemoTypingTest.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Tests");
+                });
+
+            modelBuilder.Entity("DemoTypingTest.Models.Test", b =>
+                {
+                    b.Navigation("Score")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

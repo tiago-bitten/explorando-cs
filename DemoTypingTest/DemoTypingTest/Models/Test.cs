@@ -40,5 +40,7 @@ namespace DemoTypingTest.Models
         [ForeignKey("User")]
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        public virtual Score Score { get; set; }
     }
-}
+}   
