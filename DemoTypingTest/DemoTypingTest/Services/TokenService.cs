@@ -22,7 +22,7 @@ namespace DemoTypingTest.Services
 
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddHours(1);
+            var expiration = DateTime.UtcNow.AddHours(5);
 
             var token = new JwtSecurityToken
                 (
