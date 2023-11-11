@@ -1,5 +1,6 @@
 using DemoTypingTest.Data;
 using DemoTypingTest.Models;
+using DemoTypingTest.Repositories;
 using DemoTypingTest.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -21,12 +22,18 @@ builder.Services.AddDbContext<IdentityUserDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"));
 });
 
+// Services
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<TestService>();
+
+// Repositories
+builder.Services.AddScoped<TestRepository>();
+builder.Services.AddScoped<ApplicationUserRepository>();
 
 builder.Services
-    .AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
         options.User.RequireUniqueEmail = true;
     })

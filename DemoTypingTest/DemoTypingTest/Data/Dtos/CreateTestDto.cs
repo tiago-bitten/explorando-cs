@@ -1,13 +1,28 @@
-﻿namespace DemoTypingTest.Data.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DemoTypingTest.Data.Dtos
 {
     public class CreateTestDto
     {
+        [Required]
         public string TextTest { get; set; }
-        public string TotalWords { get; set; }
-        public string TotalCharacters { get; set; }
-        public string IncorrectWords { get; set; }
-        public string IncorrectCharacters { get; set; }
-        public string Time { get; set; }
-        public int UserId { get; set; }
+
+        [Required]
+        public int TotalWords { get; set; }
+
+        [Required]
+        public int TotalCharacters { get; set; }
+
+        [Required]
+        public int IncorrectWords { get; set; }
+
+        [Required]
+        public int IncorrectCharacters { get; set; }
+
+        [Required]
+        public int Time { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
     }
 }

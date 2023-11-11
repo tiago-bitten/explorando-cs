@@ -1,29 +1,28 @@
-﻿using DemoTypingTest.Data.Dtos;
+﻿using DemoTypingTest.Data;
+using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
+using DemoTypingTest.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoTypingTest.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class TestController : ControllerBase
     {
+        private readonly TestService _testService;
 
-
-        [HttpPost]
-        public IActionResult CreateTest([FromBody] CreateTestDto createTestDto)
+        public TestController(TestService testService)
         {
-            var test = new Test
-            {
-                TextTest = createTestDto.TextTest,
-                TotalWords = int.Parse(createTestDto.TotalWords),
-                TotalCharacters = int.Parse(createTestDto.TotalCharacters),
-                IncorrectWords = int.Parse(createTestDto.IncorrectWords),
-                IncorrectCharacters = int.Parse(createTestDto.IncorrectCharacters),
-                Time = int.Parse(createTestDto.Time),
-                UserId = createTestDto.UserId
-            };
-            return Ok();
+            _testService = testService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> CreateTest([FromBody] CreateTestDto createTestDto)
+        {
+            var test = await _testService.Create(createTestDto);
+            return CreatedAtAction(nameof(CreateTest), test.Id, test);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DemoTypingTest.Data
 {
-    public class IdentityUserDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
+    public class IdentityUserDbContext : IdentityDbContext<ApplicationUser>
     {
         public IdentityUserDbContext(DbContextOptions<IdentityUserDbContext> options)
             : base(options)
