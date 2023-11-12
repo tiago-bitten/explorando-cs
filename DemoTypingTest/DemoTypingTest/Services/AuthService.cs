@@ -1,4 +1,5 @@
-﻿using DemoTypingTest.Data.Dtos;
+﻿using AutoMapper;
+using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -8,14 +9,17 @@ namespace DemoTypingTest.Services
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly TokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public AuthService(SignInManager<ApplicationUser> signInManager, TokenService tokenService)
+        public AuthService(SignInManager<ApplicationUser> signInManager,
+            TokenService tokenService, IMapper mapper)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
-        public async Task<TokenDto> Login(LoginDto dto)
+        public async Task<TokenDto> Login(SignInDto dto)
         {
             SignInResult result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
         
@@ -28,6 +32,7 @@ namespace DemoTypingTest.Services
 
             return new TokenDto
             {
+                User = _mapper.Map<ReadApplicationUserDto>(user),
                 Token = _tokenService.GenerateToken(user)
             };
         }

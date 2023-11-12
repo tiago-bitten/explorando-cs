@@ -18,7 +18,7 @@ namespace DemoTypingTest.Controllers
         }
 
         [HttpPost("signin")]
-        public async Task<IActionResult> Login(LoginDto dto)
+        public async Task<IActionResult> Login(SignInDto dto)
         {
             return Ok(await _authService.Login(dto));
         }

@@ -33,11 +33,7 @@ namespace DemoTypingTest.Services
             test.UserId = user.Id;
 
             await _testRepository.Create(test);
-
-            var scoreDto = await _scoreService.Create(test);
-            var score = _mapper.Map<Score>(scoreDto);
-
-            test.Score = score;
+            await _scoreService.Create(test);
 
             return _mapper.Map<ReadTestDto>(test);
         }

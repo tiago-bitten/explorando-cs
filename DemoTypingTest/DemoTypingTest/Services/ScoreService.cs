@@ -16,7 +16,7 @@ namespace DemoTypingTest.Services
             _mapper = mapper;
         }
 
-        public async Task<ReadScoreDto> Create(Test test)
+        public async Task Create(Test test)
         {
             var score = new Score()
             {
@@ -27,8 +27,6 @@ namespace DemoTypingTest.Services
             };
 
             await _scoreRepository.Create(score);
-
-            return _mapper.Map<ReadScoreDto>(score);
         }
 
         private double CalculateAccuracy(int letters, int mistakes)
