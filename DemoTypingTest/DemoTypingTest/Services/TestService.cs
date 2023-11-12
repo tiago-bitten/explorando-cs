@@ -2,6 +2,7 @@
 using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
 using DemoTypingTest.Repositories;
+using DemoTypingTest.Utils;
 
 namespace DemoTypingTest.Services
 {
@@ -47,6 +48,41 @@ namespace DemoTypingTest.Services
             }
 
             return _mapper.Map<ReadTestDto>(test);
+        }
+
+        public ReadTestGeneratedDto GetTest(string testDifficulty)
+        {
+            return testDifficulty.ToUpper() switch
+            {
+                "SHORT" => GetShortTest(),
+                "MEDIUM" => GetMediumTest(),
+                "LONG" => GetLongTest(),
+                _ => throw new ApplicationException("Test difficulty not found"),
+            };
+        }
+
+        private ReadTestGeneratedDto GetShortTest()
+        {
+            return new ReadTestGeneratedDto()
+            {
+                Words = TestUtil.GenerateTest(5, 3, 2)
+            };
+        }
+
+        private ReadTestGeneratedDto GetMediumTest()
+        {
+            return new ReadTestGeneratedDto()
+            {
+                Words = TestUtil.GenerateTest(4, 7, 4)
+            };
+        }
+
+        private ReadTestGeneratedDto GetLongTest()
+        {
+            return new ReadTestGeneratedDto()
+            {
+                Words = TestUtil.GenerateTest(4, 9, 7)
+            };
         }
     }
 }

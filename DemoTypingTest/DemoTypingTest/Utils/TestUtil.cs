@@ -12,9 +12,11 @@ namespace DemoTypingTest.Utils
         {
             try
             {
-                ShortWords = ExtractWords("../Assets/TestFukes/ShortTest.txt");
-                MediumWords = ExtractWords("../Assets/TestFukes/MediumTest.txt");
-                LongWords = ExtractWords("../Assets/TestFukes/LongTest.txt");
+                string basePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "TestFiles");
+
+                ShortWords = ExtractWords(Path.Combine(basePath, "ShortTest.txt"));
+                MediumWords = ExtractWords(Path.Combine(basePath, "MediumTest.txt"));
+                LongWords = ExtractWords(Path.Combine(basePath, "LongTest.txt"));
             }
             catch (Exception e)
             {
