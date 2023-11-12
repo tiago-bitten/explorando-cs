@@ -29,27 +29,13 @@ namespace DemoTypingTest.Services
             test.Id = Guid.NewGuid().ToString();
 
             var userDto = await _applicationUserService.FindById(userId);
-            var user = _mapper.Map<ApplicationUser>(userDto);
-
-            test.UserId = user.Id;
+            test.UserId = userDto.Id;
 
             await _testRepository.Create(test);
             await _scoreService.Create(test);
 
             return _mapper.Map<ReadTestDto>(test);
         }
-
-        public async Task<ReadTestDto> FindById(string id)
-        {
-            var test = await _testRepository.FindById(id);
-            if (test == null)
-            {
-                throw new ApplicationException("Test not found");
-            }
-
-            return _mapper.Map<ReadTestDto>(test);
-        }
-
         public ReadTestGeneratedDto GetTest(string testDifficulty)
         {
             return testDifficulty.ToUpper() switch

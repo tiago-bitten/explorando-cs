@@ -17,5 +17,12 @@ namespace DemoTypingTest.Controllers
         {
             _userService = userService;
         }
+
+        [HttpPut("profile/image")]
+        public async Task<IActionResult> UploadProfileImage([FromForm] IFormFile file,
+            [FromQuery] string userId)
+        {
+            return Ok(await _userService.UploadProfileImage(file, userId));
+        }
     }
 }

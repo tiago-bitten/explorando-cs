@@ -8,12 +8,10 @@ namespace DemoTypingTest.Services
     public class ScoreService
     {
         private readonly ScoreRepository _scoreRepository;
-        private readonly IMapper _mapper;
 
-        public ScoreService(ScoreRepository scoreRepository, IMapper mapper)
+        public ScoreService(ScoreRepository scoreRepository)
         {
             _scoreRepository = scoreRepository;
-            _mapper = mapper;
         }
 
         public async Task Create(Test test)

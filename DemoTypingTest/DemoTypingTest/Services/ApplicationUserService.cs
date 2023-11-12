@@ -2,6 +2,7 @@
 using DemoTypingTest.Data;
 using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
+using DemoTypingTest.Utils;
 using Microsoft.AspNetCore.Identity;
 
 namespace DemoTypingTest.Services
@@ -39,6 +40,18 @@ namespace DemoTypingTest.Services
             {
                 throw new ApplicationException("User not found");
             }
+
+            return _mapper.Map<ReadApplicationUserDto>(user);
+        }
+
+        public async Task<ReadApplicationUserDto> UploadProfileImage(IFormFile file, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            string profileImageUrl = await ProfileImageUtil.Upload(file);
+
+            user.ProfileImageURL = profileImageUrl;
+            await _userManager.UpdateAsync(user);
 
             return _mapper.Map<ReadApplicationUserDto>(user);
         }

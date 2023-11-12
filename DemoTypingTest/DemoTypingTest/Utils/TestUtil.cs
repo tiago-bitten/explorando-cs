@@ -24,7 +24,8 @@ namespace DemoTypingTest.Utils
             }
         }
 
-        public static List<string> GenerateTest(int amountShortWords, int amountMediumWords, int amountLongWords)
+        public static List<string> GenerateTest(int amountShortWords, int amountMediumWords,
+            int amountLongWords)
         {
             List<string> test = new List<string>();
 
@@ -37,7 +38,8 @@ namespace DemoTypingTest.Utils
             return ShuffleList(test);
         }
 
-        private static void GenerateRandomWords(List<string> test, List<string> sourceWords, int amount, Random random)
+        private static void GenerateRandomWords(List<string> test, List<string> sourceWords,
+            int amount, Random random)
         {
             List<string> availableWords = new List<string>(sourceWords);
             for (int i = 0; i < amount; i++)

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
+using DemoTypingTest.Utils;
 using Microsoft.AspNetCore.Identity;
 
 namespace DemoTypingTest.Services
@@ -43,7 +44,7 @@ namespace DemoTypingTest.Services
         public async Task<ReadApplicationUserDto> SignUp(CreateUserDto dto)
         {
             ApplicationUser user = _mapper.Map<ApplicationUser>(dto);
-            user.ProfileImageURL = "default-profile-img.png";
+            user.ProfileImageURL = ProfileImageUtil.DefaultProfileImage;
 
             IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
 
