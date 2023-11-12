@@ -23,7 +23,6 @@ namespace DemoTypingTest.Models
         [Column("test_id")]
         [ForeignKey("Test")]
         public string TestId { get; set; }
-
         public virtual Test Test { get; set; }
     }
 }

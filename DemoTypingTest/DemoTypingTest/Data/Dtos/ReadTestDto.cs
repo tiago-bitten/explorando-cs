@@ -9,6 +9,6 @@
         public int? IncorrectWords { get; set; }
         public int? IncorrectCharacters { get; set; }
         public int? Time { get; set; }
-        public ReadUserDto? User { get; set; }
+        public ReadApplicationUserDto? User { get; set; }
     }
 }

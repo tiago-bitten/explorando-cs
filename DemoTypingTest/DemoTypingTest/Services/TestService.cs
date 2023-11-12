@@ -7,15 +7,16 @@ namespace DemoTypingTest.Services
 {
     public class TestService
     {
-        private readonly ApplicationUserRepository _applicationUserRepository;
         private readonly TestRepository _testRepository;
+        private readonly ApplicationUserService _applicationUserService;
         private readonly IMapper _mapper;
 
-        public TestService(TestRepository testRepository, IMapper mapper, ApplicationUserRepository applicationUserRepository)
+        public TestService(TestRepository testRepository, IMapper mapper,
+            ApplicationUserService applicationUserService)
         {
             _testRepository = testRepository;
             _mapper = mapper;
-            _applicationUserRepository = applicationUserRepository;
+            _applicationUserService = applicationUserService;
         }
 
         public async Task<ReadTestDto> Create(CreateTestDto dto)
@@ -24,13 +25,10 @@ namespace DemoTypingTest.Services
 
             test.Id = Guid.NewGuid().ToString();
 
-            var user = await _applicationUserRepository.FindById(dto.UserId);
-            if (user == null)
-            {
-                throw new ApplicationException("User not found");
-            }
+            var userDto = await _applicationUserService.FindById(dto.UserId);
+            var user = _mapper.Map<ApplicationUser>(userDto);
 
-            test.User = user;
+            test.UserId = user.Id;
 
             await _testRepository.Create(test);
 

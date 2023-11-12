@@ -12,12 +12,6 @@ namespace DemoTypingTest.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-                       
-        }
-
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Score> Scores { get; set;}

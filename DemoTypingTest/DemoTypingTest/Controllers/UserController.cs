@@ -9,9 +9,9 @@ namespace DemoTypingTest.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly ApplicationUserService _userService;
 
-        public UserController(UserService userService)
+        public UserController(ApplicationUserService userService)
         {
             _userService = userService;
         }

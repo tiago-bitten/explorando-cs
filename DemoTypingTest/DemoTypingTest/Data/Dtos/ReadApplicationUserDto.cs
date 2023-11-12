@@ -1,6 +1,6 @@
 ﻿namespace DemoTypingTest.Data.Dtos
 {
-    public class ReadUserDto
+    public class ReadApplicationUserDto
     {
         public string Id { get; set; }
         public string Username { get; set; }

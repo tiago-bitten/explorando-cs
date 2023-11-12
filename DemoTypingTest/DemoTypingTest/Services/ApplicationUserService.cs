@@ -6,20 +6,20 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DemoTypingTest.Services
 {
-    public class UserService
+    public class ApplicationUserService
     {
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IdentityUserDbContext _context;
 
-        public UserService(IMapper mapper, UserManager<ApplicationUser> userManager, IdentityUserDbContext context)
+        public ApplicationUserService(IMapper mapper, UserManager<ApplicationUser> userManager, IdentityUserDbContext context)
         {
             _mapper = mapper;
             _userManager = userManager;
             _context = context;
         }
 
-        public async Task<ReadUserDto> Create(CreateUserDto dto)
+        public async Task<ReadApplicationUserDto> Create(CreateUserDto dto)
         {
             ApplicationUser user = _mapper.Map<ApplicationUser>(dto);
             user.ProfileImageURL = "default-profile-img.png";
@@ -31,12 +31,18 @@ namespace DemoTypingTest.Services
                 throw new ApplicationException(result.Errors.First().Description);
             }
 
-            return _mapper.Map<ReadUserDto>(user);
+            return _mapper.Map<ReadApplicationUserDto>(user);
         }
 
-        public async Task AddTest(Test test)
+        public async Task<ReadApplicationUserDto> FindById(string id)
         {
-            await _context.Tests.AddAsync(test);
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new ApplicationException("User not found");
+            }
+
+            return _mapper.Map<ReadApplicationUserDto>(user);
         }
     }
 }

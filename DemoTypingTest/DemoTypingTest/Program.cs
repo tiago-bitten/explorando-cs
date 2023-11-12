@@ -23,14 +23,13 @@ builder.Services.AddDbContext<IdentityUserDbContext>(options =>
 });
 
 // Services
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<ApplicationUserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<TestService>();
 builder.Services.AddScoped<ScoreService>();
 
 // Repositories
-builder.Services.AddScoped<ApplicationUserRepository>();
 builder.Services.AddScoped<TestRepository>();
 builder.Services.AddScoped<ScoreRepository>();
 

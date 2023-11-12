@@ -27,9 +27,10 @@ namespace DemoTypingTest.Services
             var testDto = await _testService.FindById(dto.TestId);
             var test = _mapper.Map<Test>(testDto);
 
-            score.Test = test;
+            score.TestId = test.Id;
 
             await _scoreRepository.Create(score);
+
             return _mapper.Map<ReadScoreDto>(score);
         }
     }

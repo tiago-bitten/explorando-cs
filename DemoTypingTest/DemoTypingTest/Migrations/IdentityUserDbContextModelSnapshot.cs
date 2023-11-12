@@ -3,7 +3,6 @@ using System;
 using DemoTypingTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,10 +11,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DemoTypingTest.Migrations
 {
     [DbContext(typeof(IdentityUserDbContext))]
-    [Migration("20231111231714_Inital")]
-    partial class Inital
+    partial class IdentityUserDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +66,8 @@ namespace DemoTypingTest.Migrations
 
                     b.Property<string>("ProfileImageURL")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("profile_image_url");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
