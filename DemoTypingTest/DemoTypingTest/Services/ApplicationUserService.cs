@@ -10,13 +10,11 @@ namespace DemoTypingTest.Services
     {
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IdentityUserDbContext _context;
 
-        public ApplicationUserService(IMapper mapper, UserManager<ApplicationUser> userManager, IdentityUserDbContext context)
+        public ApplicationUserService(IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _mapper = mapper;
             _userManager = userManager;
-            _context = context;
         }
 
         public async Task<ReadApplicationUserDto> Create(CreateUserDto dto)

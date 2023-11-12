@@ -8,8 +8,6 @@ namespace DemoTypingTest.Profiles
     {
         public ScoreProfile()
         {
-            CreateMap<CreateScoreDto, Score>();
-
             CreateMap<Score, ReadScoreDto>()
                 .ReverseMap();
         }

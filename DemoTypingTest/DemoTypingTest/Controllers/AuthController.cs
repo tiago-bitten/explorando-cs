@@ -9,25 +9,23 @@ namespace DemoTypingTest.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthService _authService;
-        private readonly ApplicationUserService _userService;
 
-        public AuthController(AuthService authService, ApplicationUserService userService)
+        public AuthController(AuthService authService)
         {
             _authService = authService;
-            _userService = userService;
         }
 
         [HttpPost("signin")]
-        public async Task<IActionResult> Login(SignInDto dto)
+        public async Task<IActionResult> SignIn(SignInDto dto)
         {
-            return Ok(await _authService.Login(dto));
+            return Ok(await _authService.SignIn(dto));
         }
 
         [HttpPost("signup")]
-        public async Task<IActionResult> Create(CreateUserDto dto)
+        public async Task<IActionResult> SignUp(CreateUserDto dto)
         {
-            var user = await _userService.Create(dto);
-            return CreatedAtAction(nameof(Create), user.Id, user);
+            var user = await _authService.SignUp(dto);
+            return CreatedAtAction(nameof(SignUp), user.Id, user);
         }
     }
 }

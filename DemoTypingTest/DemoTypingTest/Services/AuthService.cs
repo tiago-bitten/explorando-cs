@@ -8,20 +8,23 @@ namespace DemoTypingTest.Services
     public class AuthService
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly TokenService _tokenService;
         private readonly IMapper _mapper;
 
         public AuthService(SignInManager<ApplicationUser> signInManager,
-            TokenService tokenService, IMapper mapper)
+           UserManager<ApplicationUser> userManager ,TokenService tokenService, IMapper mapper)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _tokenService = tokenService;
             _mapper = mapper;
         }
 
-        public async Task<TokenDto> Login(SignInDto dto)
+        public async Task<TokenDto> SignIn(SignInDto dto)
         {
-            SignInResult result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
+            SignInResult result = await _signInManager.PasswordSignInAsync(dto.Username, dto.Password,
+                false, false);
         
             if (!result.Succeeded)
             {
@@ -35,6 +38,21 @@ namespace DemoTypingTest.Services
                 User = _mapper.Map<ReadApplicationUserDto>(user),
                 Token = _tokenService.GenerateToken(user)
             };
+        }
+
+        public async Task<ReadApplicationUserDto> SignUp(CreateUserDto dto)
+        {
+            ApplicationUser user = _mapper.Map<ApplicationUser>(dto);
+            user.ProfileImageURL = "default-profile-img.png";
+
+            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
+
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException(result.Errors.First().Description);
+            }
+
+            return _mapper.Map<ReadApplicationUserDto>(user);
         }
     }
 }

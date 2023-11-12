@@ -21,13 +21,13 @@ namespace DemoTypingTest.Services
             _scoreService = scoreService;
         }
 
-        public async Task<ReadTestDto> Create(CreateTestDto dto)
+        public async Task<ReadTestDto> Create(CreateTestDto dto, string userId)
         {
             var test = _mapper.Map<Test>(dto);
 
             test.Id = Guid.NewGuid().ToString();
 
-            var userDto = await _applicationUserService.FindById(dto.UserId);
+            var userDto = await _applicationUserService.FindById(userId);
             var user = _mapper.Map<ApplicationUser>(userDto);
 
             test.UserId = user.Id;

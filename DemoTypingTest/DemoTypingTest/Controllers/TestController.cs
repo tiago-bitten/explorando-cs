@@ -19,11 +19,12 @@ namespace DemoTypingTest.Controllers
             _testService = testService;
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> CreateTest([FromBody] CreateTestDto createTestDto)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] CreateTestDto createTestDto,
+            [FromQuery] string userId)
         {
-            var test = await _testService.Create(createTestDto);
-            return CreatedAtAction(nameof(CreateTest), test.Id, test);
+            var test = await _testService.Create(createTestDto, userId);
+            return CreatedAtAction(nameof(Create), test.Id, test);
         }
     }
 }
