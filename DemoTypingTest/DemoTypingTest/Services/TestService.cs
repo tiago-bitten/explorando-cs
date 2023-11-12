@@ -22,7 +22,7 @@ namespace DemoTypingTest.Services
             _scoreService = scoreService;
         }
 
-        public async Task<ReadTestDto> Create(CreateTestDto dto, string userId)
+        public async Task<ReadScoreDto> Create(CreateTestDto dto, string userId)
         {
             var test = _mapper.Map<Test>(dto);
 
@@ -32,10 +32,17 @@ namespace DemoTypingTest.Services
             test.UserId = userDto.Id;
 
             await _testRepository.Create(test);
-            await _scoreService.Create(test);
+            var score = await _scoreService.Create(test);
 
+            return score;
+        }
+
+        public async Task<ReadTestDto> FindById(string id)
+        {
+            var test = await _testRepository.FindById(id);
             return _mapper.Map<ReadTestDto>(test);
         }
+
         public ReadTestGeneratedDto GetTest(string testDifficulty)
         {
             return testDifficulty.ToUpper() switch

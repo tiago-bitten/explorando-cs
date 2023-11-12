@@ -36,6 +36,10 @@ namespace DemoTypingTest.Models
         public int Time { get; set; }
 
         [Required]
+        [Column("difficulty")]
+        public string Difficulty { get; set; }
+
+        [Required]
         [Column("user_id")]
         [ForeignKey("User")]
         public string UserId { get; set; }

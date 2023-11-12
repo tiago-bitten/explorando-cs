@@ -1,6 +1,4 @@
-﻿using DemoTypingTest.Data;
-using DemoTypingTest.Data.Dtos;
-using DemoTypingTest.Models;
+﻿using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

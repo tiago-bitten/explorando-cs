@@ -21,5 +21,8 @@ namespace DemoTypingTest.Data.Dtos
 
         [Required]
         public int Time { get; set; }
+
+        [Required]
+        public string Difficulty { get; set; }
     }
 }

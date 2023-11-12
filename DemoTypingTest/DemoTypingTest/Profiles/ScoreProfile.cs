@@ -9,7 +9,9 @@ namespace DemoTypingTest.Profiles
         public ScoreProfile()
         {
             CreateMap<Score, ReadScoreDto>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dto => dto.Test,
+                opt => opt.MapFrom(score => score.Test));
         }
     }
 }

@@ -8,13 +8,15 @@ namespace DemoTypingTest.Services
     public class ScoreService
     {
         private readonly ScoreRepository _scoreRepository;
+        private readonly IMapper _mapper;
 
-        public ScoreService(ScoreRepository scoreRepository)
+        public ScoreService(ScoreRepository scoreRepository,IMapper mapper)
         {
             _scoreRepository = scoreRepository;
+            _mapper = mapper;
         }
 
-        public async Task Create(Test test)
+        public async Task<ReadScoreDto> Create(Test test)
         {
             var score = new Score()
             {
@@ -25,6 +27,26 @@ namespace DemoTypingTest.Services
             };
 
             await _scoreRepository.Create(score);
+
+            return _mapper.Map<ReadScoreDto>(score);
+        }
+
+        public async Task<ICollection<ReadScoreDto>> GetAllUserScores(string userId)
+        {
+            var scores = await _scoreRepository.GetAllUserScore(userId);
+            return _mapper.Map<ICollection<ReadScoreDto>>(scores);
+        }
+
+        public async Task<ICollection<ReadScoreDto>> GetBestUserScores(string difficulty, string userId)
+        {
+            var scores = await _scoreRepository.GetUserBestScores(userId, difficulty);
+            return _mapper.Map<ICollection<ReadScoreDto>>(scores);
+        }
+
+        public async Task<ICollection<ReadScoreDto>> GetTopScores(string difficulty)
+        {
+            var scores = await _scoreRepository.GetTopScores(difficulty);
+            return _mapper.Map<ICollection<ReadScoreDto>>(scores);
         }
 
         private double CalculateAccuracy(int letters, int mistakes)
