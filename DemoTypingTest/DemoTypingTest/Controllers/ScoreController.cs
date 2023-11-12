@@ -1,7 +1,6 @@
 ﻿using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoTypingTest.Controllers
@@ -16,13 +15,6 @@ namespace DemoTypingTest.Controllers
         public ScoreController(ScoreService scoreService)
         {
             _scoreService = scoreService;
-        }
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Create(CreateScoreDto dto)
-        {
-            var score = await _scoreService.Create(dto);
-            return CreatedAtAction(nameof(Create), score.Id, score);
         }
     }
 }

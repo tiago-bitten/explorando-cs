@@ -8,30 +8,38 @@ namespace DemoTypingTest.Services
     public class ScoreService
     {
         private readonly ScoreRepository _scoreRepository;
-        private readonly TestService _testService;
         private readonly IMapper _mapper;
 
-        public ScoreService(ScoreRepository scoreRepository, TestService testService,IMapper mapper)
+        public ScoreService(ScoreRepository scoreRepository, IMapper mapper)
         {
             _scoreRepository = scoreRepository;
-            _testService = testService;
             _mapper = mapper;
         }
 
-        public async Task<ReadScoreDto> Create(CreateScoreDto dto)
+        public async Task<ReadScoreDto> Create(Test test)
         {
-            var score = _mapper.Map<Score>(dto);
-
-            score.Id = Guid.NewGuid().ToString();
-
-            var testDto = await _testService.FindById(dto.TestId);
-            var test = _mapper.Map<Test>(testDto);
-
-            score.TestId = test.Id;
+            var score = new Score()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Accuracy = CalculateAccuracy(test.TotalCharacters, test.IncorrectCharacters),
+                Wpm = CalculateWpm(test.TotalWords, test.IncorrectWords, test.Time),
+                TestId = test.Id,
+            };
 
             await _scoreRepository.Create(score);
 
             return _mapper.Map<ReadScoreDto>(score);
+        }
+
+        private double CalculateAccuracy(int letters, int mistakes)
+        {
+            return Math.Round((double)(letters - mistakes) / letters * 100, 2);
+        }
+
+        private double CalculateWpm(int words, int incorrectWords, int time)
+        {
+            double minutes = time / 60.0;
+            return Math.Round((words - incorrectWords) / minutes, 2);
         }
     }
 }

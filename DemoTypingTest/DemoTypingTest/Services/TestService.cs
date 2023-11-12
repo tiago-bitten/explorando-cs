@@ -9,14 +9,16 @@ namespace DemoTypingTest.Services
     {
         private readonly TestRepository _testRepository;
         private readonly ApplicationUserService _applicationUserService;
+        private readonly ScoreService _scoreService;
         private readonly IMapper _mapper;
 
         public TestService(TestRepository testRepository, IMapper mapper,
-            ApplicationUserService applicationUserService)
+            ApplicationUserService applicationUserService, ScoreService scoreService)
         {
             _testRepository = testRepository;
             _mapper = mapper;
             _applicationUserService = applicationUserService;
+            _scoreService = scoreService;
         }
 
         public async Task<ReadTestDto> Create(CreateTestDto dto)
@@ -31,6 +33,11 @@ namespace DemoTypingTest.Services
             test.UserId = user.Id;
 
             await _testRepository.Create(test);
+
+            var scoreDto = await _scoreService.Create(test);
+            var score = _mapper.Map<Score>(scoreDto);
+
+            test.Score = score;
 
             return _mapper.Map<ReadTestDto>(test);
         }

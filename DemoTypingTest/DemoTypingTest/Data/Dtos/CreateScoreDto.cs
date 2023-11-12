@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DemoTypingTest.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace DemoTypingTest.Data.Dtos
 {
@@ -11,6 +12,6 @@ namespace DemoTypingTest.Data.Dtos
         public double Accuracy { get; set; }
 
         [Required]
-        public string TestId { get; set; }
+        public Test Test { get; set; }
     }
 }

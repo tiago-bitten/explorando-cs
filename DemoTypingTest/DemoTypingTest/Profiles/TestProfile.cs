@@ -13,7 +13,9 @@ namespace DemoTypingTest.Profiles
             CreateMap<Test, ReadTestDto>()
                 .ReverseMap()
                 .ForMember(dto => dto.User,
-                opt => opt.MapFrom(test => test.User));
+                opt => opt.MapFrom(test => test.User))
+                .ForMember(dto => dto.Score,
+                opt => opt.MapFrom(test => test.Score));
         }
     }
 }

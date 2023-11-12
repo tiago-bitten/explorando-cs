@@ -11,8 +11,7 @@ namespace DemoTypingTest.Profiles
             CreateMap<CreateScoreDto, Score>();
 
             CreateMap<Score, ReadScoreDto>()
-                .ForMember(dto => dto.Test,
-                opt => opt.MapFrom(score => score.Test));
+                .ReverseMap();
         }
     }
 }
