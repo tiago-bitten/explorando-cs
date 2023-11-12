@@ -48,12 +48,29 @@ namespace DemoTypingTest.Services
         {
             var user = await _userManager.FindByIdAsync(userId);
 
+            ProfileImageUtil.Delete(user.ProfileImageURL);
+
             string profileImageUrl = await ProfileImageUtil.Upload(file);
 
             user.ProfileImageURL = profileImageUrl;
             await _userManager.UpdateAsync(user);
 
             return _mapper.Map<ReadApplicationUserDto>(user);
+        }
+
+        public async Task<byte[]> RecoverProfileImage(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return ProfileImageUtil.Recover(user.ProfileImageURL);
+        }
+
+        public async Task DeleteProfileImage(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            ProfileImageUtil.Delete(user.ProfileImageURL);
+            user.ProfileImageURL = ProfileImageUtil.DefaultProfileImage;
+
+            await _userManager.UpdateAsync(user);
         }
     }
 }
