@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DemoTypingTest.Data;
-using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Models;
 using Microsoft.EntityFrameworkCore;
 

@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Assets\ProfileImages\" />
     <Folder Include="Assets\TestFiles\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>

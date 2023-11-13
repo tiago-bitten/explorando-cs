@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DemoTypingTest.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoTypingTest.Models
@@ -37,6 +38,7 @@ namespace DemoTypingTest.Models
 
         [Required]
         [Column("difficulty")]
+        [EnumDataType(typeof(TestDifficulty))]
         public string Difficulty { get; set; }
 
         [Required]
