@@ -1,4 +1,5 @@
 using DemoTypingTest.Data;
+using DemoTypingTest.Middlewares;
 using DemoTypingTest.Models;
 using DemoTypingTest.Repositories;
 using DemoTypingTest.Services;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +58,23 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ClockSkew = TimeSpan.Zero
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            var exception = context.Exception;
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
+
+            var result = JsonSerializer.Serialize(new
+            {
+                Message = "Erro de autenticação: " + exception.Message,
+            });
+
+            return context.Response.WriteAsync(result);
+        }
+    };
 });
 
 var app = builder.Build();
@@ -74,5 +93,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.Run();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DemoTypingTest.Data.Dtos;
+using DemoTypingTest.Exceptions;
 using DemoTypingTest.Models;
 using DemoTypingTest.Repositories;
 using DemoTypingTest.Utils;
@@ -50,7 +51,7 @@ namespace DemoTypingTest.Services
                 "SHORT" => GetShortTest(),
                 "MEDIUM" => GetMediumTest(),
                 "LONG" => GetLongTest(),
-                _ => throw new ApplicationException("Test difficulty not found"),
+                _ => throw new NotFoundException("Test difficulty not found"),
             };
         }
 

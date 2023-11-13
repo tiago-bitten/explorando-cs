@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using DemoTypingTest.Data;
 using DemoTypingTest.Data.Dtos;
+using DemoTypingTest.Exceptions;
 using DemoTypingTest.Models;
 using DemoTypingTest.Utils;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace DemoTypingTest.Services
 {
@@ -18,27 +20,12 @@ namespace DemoTypingTest.Services
             _userManager = userManager;
         }
 
-        public async Task<ReadApplicationUserDto> Create(CreateUserDto dto)
-        {
-            ApplicationUser user = _mapper.Map<ApplicationUser>(dto);
-            user.ProfileImageURL = "default-profile-img.png";
-
-            IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
-        
-            if (!result.Succeeded)
-            {
-                throw new ApplicationException(result.Errors.First().Description);
-            }
-
-            return _mapper.Map<ReadApplicationUserDto>(user);
-        }
-
         public async Task<ReadApplicationUserDto> FindById(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                throw new ApplicationException("User not found");
+                throw new NotFoundException("User not found");
             }
 
             return _mapper.Map<ReadApplicationUserDto>(user);

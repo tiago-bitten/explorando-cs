@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DemoTypingTest.Data.Dtos;
+using DemoTypingTest.Exceptions;
 using DemoTypingTest.Models;
 using DemoTypingTest.Utils;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +30,7 @@ namespace DemoTypingTest.Services
         
             if (!result.Succeeded)
             {
-                throw new ApplicationException("Invalid login attempt.");
+                throw new ValidationException("Invalid login attempt.");
             }
 
             ApplicationUser user = await _signInManager.UserManager.FindByNameAsync(dto.Username);
@@ -50,7 +51,7 @@ namespace DemoTypingTest.Services
 
             if (!result.Succeeded)
             {
-                throw new ApplicationException(result.Errors.First().Description);
+                throw new ValidationException(result.Errors.First().Description);
             }
 
             return _mapper.Map<ReadApplicationUserDto>(user);
