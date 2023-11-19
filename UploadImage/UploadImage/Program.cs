@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UploadImage.Data;
+using UploadImage.Repositories;
 using UploadImage.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// controllers
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductImagesRepository>();
+
+// services
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ProductImagesService>();
 builder.Services.AddScoped<GoogleDriveService>();
 
 builder.Services.AddDbContext<UploadImageDbContext>(options =>
