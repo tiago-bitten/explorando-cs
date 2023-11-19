@@ -112,3 +112,13 @@ C:\Users\teste\Documents\CSHARP\explorando\DemoTypingTest\DemoTypingTest\obj\Deb
 C:\Users\teste\Documents\CSHARP\explorando\DemoTypingTest\DemoTypingTest\obj\Debug\net6.0\DemoTypingTest.csproj.CopyComplete
 C:\Users\teste\Documents\CSHARP\explorando\DemoTypingTest\DemoTypingTest\obj\Debug\net6.0\DemoTypingTest.genruntimeconfig.cache
 C:\Users\teste\Documents\CSHARP\explorando\DemoTypingTest\DemoTypingTest\obj\Debug\net6.0\ref\DemoTypingTest.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Data\credentials.json
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Google.Apis.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Google.Apis.Auth.PlatformServices.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Google.Apis.Auth.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Google.Apis.Core.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Google.Apis.Drive.v3.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\System.CodeDom.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\System.Management.dll
+C:\CSHARP\explorando\DemoTypingTest\DemoTypingTest\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Management.dll

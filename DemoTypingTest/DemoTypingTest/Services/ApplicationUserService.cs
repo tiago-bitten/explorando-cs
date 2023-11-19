@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using DemoTypingTest.Data;
 using DemoTypingTest.Data.Dtos;
 using DemoTypingTest.Exceptions;
 using DemoTypingTest.Models;
 using DemoTypingTest.Utils;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace DemoTypingTest.Services
 {
@@ -13,11 +11,14 @@ namespace DemoTypingTest.Services
     {
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly GoogleDriveService _googleDriveService;
 
-        public ApplicationUserService(IMapper mapper, UserManager<ApplicationUser> userManager)
+        public ApplicationUserService(IMapper mapper, UserManager<ApplicationUser> userManager,
+            GoogleDriveService googleDriveService)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _googleDriveService = googleDriveService;
         }
 
         public async Task<ReadApplicationUserDto> FindById(string id)
@@ -34,15 +35,15 @@ namespace DemoTypingTest.Services
         public async Task<ReadApplicationUserDto> UploadProfileImage(IFormFile file, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-
-            ProfileImageUtil.Delete(user.ProfileImageURL);
-
-            string profileImageUrl = await ProfileImageUtil.Upload(file);
-
-            user.ProfileImageURL = profileImageUrl;
-            await _userManager.UpdateAsync(user);
-
-            return _mapper.Map<ReadApplicationUserDto>(user);
+            if (user == null)
+            {
+                throw new ValidationException("User not found");
+            }
+            
+            if (file == null || file.Length == 0)
+            {
+                throw new ValidationException("Image is required");
+            }
         }
 
         public async Task<byte[]> RecoverProfileImage(string userId)
