@@ -70,7 +70,7 @@ namespace UploadImage.Services
 
         private string ExtractFileName(string fileName)
         {
-            return fileName.Substring(0, fileName.LastIndexOf('.'));
+            return fileName[..fileName.LastIndexOf('.')];
         }
 
         private Boolean IsImage(string extension)

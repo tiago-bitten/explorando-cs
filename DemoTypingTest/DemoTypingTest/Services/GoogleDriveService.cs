@@ -1,19 +1,18 @@
-﻿using AutoMapper;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 
-namespace UploadImage.Services
+namespace DemoTypingTest.Services
 {
     public class GoogleDriveService
     {
-        private readonly string credentialPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "credentials.json");
+        private readonly string credentialsPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "credentials.json");
 
         public Google.Apis.Drive.v3.Data.File Upload(IFormFile file, string fileName)
         {
-            using (var stream = new FileStream(credentialPath, FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
             {
-                var credential = GoogleCredential.FromStream(stream).CreateScoped(new[] { DriveService.Scope.Drive });
+                var credential = GoogleCredential.FromStream(stream).CreateScoped(new string[] { DriveService.Scope.Drive });
                 var service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
@@ -22,13 +21,13 @@ namespace UploadImage.Services
 
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
-                    Name = fileName,
+                    Name = fileName
                 };
 
                 FilesResource.CreateMediaUpload request;
                 using (var stream2 = file.OpenReadStream())
                 {
-                    request = service.Files.Create(fileMetadata, stream2, "image/jpeg");
+                    request = service.Files.Create(fileMetadata, stream2, "image/png");
                     request.Fields = "id";
                     request.Upload();
                 }
@@ -39,9 +38,9 @@ namespace UploadImage.Services
 
         public async Task<byte[]> Recover(string imageKey)
         {
-            using (var stream = new FileStream(credentialPath, FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read))
             {
-                var credential = GoogleCredential.FromStream(stream).CreateScoped(new[] { DriveService.Scope.Drive });
+                var credential = GoogleCredential.FromStream(stream).CreateScoped(new string[] { DriveService.Scope.Drive });
                 var service = new DriveService(new BaseClientService.Initializer()
                 {
                     HttpClientInitializer = credential,
@@ -49,7 +48,7 @@ namespace UploadImage.Services
                 });
 
                 var request = service.Files.Get(imageKey);
-                var stream2 = new System.IO.MemoryStream();
+                var stream2 = new MemoryStream();
                 await request.DownloadAsync(stream2);
                 return stream2.ToArray();
             }
