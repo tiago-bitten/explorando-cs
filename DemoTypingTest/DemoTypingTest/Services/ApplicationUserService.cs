@@ -44,21 +44,14 @@ namespace DemoTypingTest.Services
             {
                 throw new ValidationException("Image is required");
             }
-        }
 
-        public async Task<byte[]> RecoverProfileImage(string userId)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            return ProfileImageUtil.Recover(user.ProfileImageURL);
-        }
+            string fileName = FileUtil.ExtractFileName(file.FileName) + "__=)__" + Guid.NewGuid().ToString();
+            Google.Apis.Drive.v3.Data.File uploadedFile = _googleDriveService.Upload(file, fileName);
 
-        public async Task DeleteProfileImage(string userId)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            ProfileImageUtil.Delete(user.ProfileImageURL);
-            user.ProfileImageURL = ProfileImageUtil.DefaultProfileImage;
-
+            user.ProfileImageKey = uploadedFile.Id;
             await _userManager.UpdateAsync(user);
+
+            return _mapper.Map<ReadApplicationUserDto>(user);
         }
     }
 }

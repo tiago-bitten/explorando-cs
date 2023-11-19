@@ -1,6 +1,6 @@
 ﻿namespace DemoTypingTest.Utils
 {
-    public class ProfileImageUtil
+    public class FileUtil
     {
         public static string ExtractFileName(string fileName)
         {

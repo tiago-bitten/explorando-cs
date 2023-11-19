@@ -3,6 +3,7 @@ using System;
 using DemoTypingTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DemoTypingTest.Migrations
 {
     [DbContext(typeof(IdentityUserDbContext))]
-    partial class IdentityUserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231119192520_imagem key")]
+    partial class imagemkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

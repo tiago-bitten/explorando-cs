@@ -30,6 +30,7 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<TestService>();
 builder.Services.AddScoped<ScoreService>();
+builder.Services.AddScoped<GoogleDriveService>();
 
 // Repositories
 builder.Services.AddScoped<TestRepository>();
