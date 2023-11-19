@@ -53,5 +53,16 @@ namespace DemoTypingTest.Services
 
             return _mapper.Map<ReadApplicationUserDto>(user);
         }
+
+        public async Task<byte[]> RecoverProfileImage(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ValidationException("User not found");
+            }
+
+            return await _googleDriveService.Recover(user.ProfileImageKey);
+        }
     }
 }

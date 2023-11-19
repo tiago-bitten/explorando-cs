@@ -28,7 +28,7 @@ namespace DemoTypingTest.Controllers
         [HttpGet("profile/image")]
         public async Task<IActionResult> RecoverProfileImage([FromQuery] string userId)
         {
-            return NoContent();
+            return File(await _userService.RecoverProfileImage(userId), "image/png");
         }
 
         [HttpDelete("profile/image")]
