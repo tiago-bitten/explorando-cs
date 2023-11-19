@@ -28,12 +28,13 @@ namespace DemoTypingTest.Controllers
         [HttpGet("profile/image")]
         public async Task<IActionResult> RecoverProfileImage([FromQuery] string userId)
         {
-            return File(await _userService.RecoverProfileImage(userId), "image/png");
+            return File(await _userService.RecoverProfileImage(userId), "image/jpeg", "image/png");
         }
 
         [HttpDelete("profile/image")]
         public async Task<IActionResult> DeleteProfileImage([FromQuery] string userId)
         {
+            await _userService.DeleteProfileImage(userId);
             return NoContent();
         }
     }

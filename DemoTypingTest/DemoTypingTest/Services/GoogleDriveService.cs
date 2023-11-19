@@ -8,8 +8,6 @@ namespace DemoTypingTest.Services
     {
         private readonly string credentialsPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "credentials.json");
 
-        public const string DEFAULT_PROFILE_IMAGE_KEY = "1CRRST2k2Tl_5I2f4HJU9Et5BlK3bQAyD";
-
         public Google.Apis.Drive.v3.Data.File Upload(IFormFile file, string fileName)
         {
             using var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read);
@@ -36,7 +34,7 @@ namespace DemoTypingTest.Services
             return request.ResponseBody;
         }
 
-        public async Task<byte[]> Recover(string imageKey)
+        public async Task<byte[]> Recover(string key)
         {
             using var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read);
             var credential = GoogleCredential.FromStream(stream).CreateScoped(new string[] { DriveService.Scope.Drive });
@@ -46,10 +44,23 @@ namespace DemoTypingTest.Services
                 ApplicationName = "Dejotageek"
             });
 
-            var request = service.Files.Get(imageKey);
+            var request = service.Files.Get(key);
             var stream2 = new MemoryStream();
             await request.DownloadAsync(stream2);
             return stream2.ToArray();
+        }
+
+        public void Delete(string key)
+        {
+            using var stream = new FileStream(credentialsPath, FileMode.Open, FileAccess.Read);
+            var credential = GoogleCredential.FromStream(stream).CreateScoped(new string[] { DriveService.Scope.Drive });
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "Dejotageek"
+            });
+
+            service.Files.Delete(key).Execute();
         }
     }
 }

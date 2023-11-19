@@ -42,26 +42,36 @@ namespace DemoTypingTest.Middlewares
                 case UnauthorizedAccessException e:
                     apiError.StatusCode = 401;
                     apiError.Message = "Unauthorized: Token not provided or invalid.";
+
+                    response.StatusCode = 401;
                     break;
 
                 case ApplicationException e:
                     apiError.StatusCode = 500;
                     apiError.Message = "Internal Server Error: " + e.Message;
+
+                    response.StatusCode = 500;
                     break;
 
                 case ValidationException e:
                     apiError.StatusCode = 422;
                     apiError.Message = "Validation Error: " + e.Message;
+
+                    response.StatusCode = 422;
                     break;
 
                 case NotFoundException e:
                     apiError.StatusCode = 404;
                     apiError.Message = "Resource Not Found: " + e.Message;
+
+                    response.StatusCode = 404;
                     break;
 
                 default:
                     apiError.StatusCode = 500;
                     apiError.Message = "Internal Server Error";
+
+                    response.StatusCode = 500;
                     break;
             }
 

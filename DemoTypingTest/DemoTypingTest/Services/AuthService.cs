@@ -45,7 +45,7 @@ namespace DemoTypingTest.Services
         public async Task<ReadApplicationUserDto> SignUp(CreateUserDto dto)
         {
             ApplicationUser user = _mapper.Map<ApplicationUser>(dto);
-            user.ProfileImageKey = GoogleDriveService.DEFAULT_PROFILE_IMAGE_KEY;
+            user.ProfileImageKey = FileUtil.DEFAULT_PROFILE_IMAGE_KEY;
 
             IdentityResult result = await _userManager.CreateAsync(user, dto.Password);
 

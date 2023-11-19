@@ -45,6 +45,12 @@ namespace DemoTypingTest.Services
                 throw new ValidationException("Image is required");
             }
 
+            string currentImageKey = user.ProfileImageKey;
+            if (!currentImageKey.Equals(FileUtil.DEFAULT_PROFILE_IMAGE_KEY))
+            {
+                _googleDriveService.Delete(currentImageKey);
+            }
+
             string fileName = FileUtil.ExtractFileName(file.FileName) + "__=)__" + Guid.NewGuid().ToString();
             Google.Apis.Drive.v3.Data.File uploadedFile = _googleDriveService.Upload(file, fileName);
 
@@ -63,6 +69,25 @@ namespace DemoTypingTest.Services
             }
 
             return await _googleDriveService.Recover(user.ProfileImageKey);
+        }
+
+        public async Task DeleteProfileImage(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ValidationException("User not found");
+            }
+
+            string currentImageKey = user.ProfileImageKey;
+            if (currentImageKey.Equals(FileUtil.DEFAULT_PROFILE_IMAGE_KEY))
+            {
+                throw new ValidationException("User does not have a profile image");
+            }
+
+            _googleDriveService.Delete(user.ProfileImageKey);
+            user.ProfileImageKey = FileUtil.DEFAULT_PROFILE_IMAGE_KEY;
+            await _userManager.UpdateAsync(user);
         }
     }
 }
