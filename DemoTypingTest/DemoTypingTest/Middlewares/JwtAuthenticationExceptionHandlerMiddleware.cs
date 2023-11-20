@@ -16,23 +16,10 @@ public class JwtAuthenticationExceptionHandlerMiddleware
         {
             await _next(context);
         }
-        catch (SecurityTokenExpiredException)
+        catch (SecurityTokenException)
         {
-            context.Response.Headers.Add("Token-Expired", "true");
             context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            await context.Response.WriteAsync("Token has expired.");
-        }
-        catch (SecurityTokenInvalidSignatureException)
-        {
-            context.Response.Headers.Add("Token-SignatureInvalid", "true");
-            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            await context.Response.WriteAsync("Token signature is invalid.");
-        }
-        catch (Exception)
-        {
-            context.Response.Headers.Add("Token-Error", "true");
-            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            await context.Response.WriteAsync("Unauthorized");
+            await context.Response.WriteAsync("Invalid token.");
         }
     }
 }

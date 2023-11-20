@@ -61,23 +61,10 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ClockSkew = TimeSpan.Zero
     };
+});
 
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-            context.Response.ContentType = "application/json";
-            var message = new { message = "Invalid token" };
-            var json = JsonSerializer.Serialize(message);
-            context.Response.WriteAsync(json + "-------------------ovo");
-            return Task.CompletedTask;
-        },
-        OnTokenValidated = context =>
-        {
-            return Task.CompletedTask;
-        }
-    };
+builder.Services.AddAuthorization(options =>
+{
 });
 
 var app = builder.Build();
@@ -90,6 +77,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<JwtAuthenticationExceptionHandlerMiddleware>();
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseAuthentication();
