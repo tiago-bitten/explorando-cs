@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoTypingTest.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class TestController : ControllerBase
@@ -17,6 +16,7 @@ namespace DemoTypingTest.Controllers
             _testService = testService;
         }
 
+        [Authorize]
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CreateTestDto createTestDto,
             [FromQuery] string userId)

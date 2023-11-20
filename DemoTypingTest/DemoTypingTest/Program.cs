@@ -7,15 +7,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// AddEndpointsApiExplorer and SwaggerGen should be added before AddAuthentication.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -46,12 +47,13 @@ builder.Services
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+// Configure authentication and authorization middleware.
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("anapata-123-ovo-123-123")),
@@ -64,23 +66,22 @@ builder.Services.AddAuthentication(options =>
     {
         OnAuthenticationFailed = context =>
         {
-            var exception = context.Exception;
-            context.Response.StatusCode = 401;
+            context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
             context.Response.ContentType = "application/json";
-
-            var result = JsonSerializer.Serialize(new
-            {
-                Message = "Erro de autenticação: " + exception.Message,
-            });
-
-            return context.Response.WriteAsync(result);
+            var message = new { message = "Invalid token" };
+            var json = JsonSerializer.Serialize(message);
+            context.Response.WriteAsync(json + "-------------------ovo");
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            return Task.CompletedTask;
         }
     };
 });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -89,12 +90,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.Run();

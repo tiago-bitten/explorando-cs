@@ -1,7 +1,5 @@
-﻿using DemoTypingTest.Data.Dtos;
-using DemoTypingTest.Services;
+﻿using DemoTypingTest.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoTypingTest.Controllers

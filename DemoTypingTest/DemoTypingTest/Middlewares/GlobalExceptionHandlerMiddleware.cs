@@ -41,7 +41,7 @@ namespace DemoTypingTest.Middlewares
             {
                 case UnauthorizedAccessException e:
                     apiError.StatusCode = 401;
-                    apiError.Message = "Unauthorized: Token not provided or invalid.";
+                    apiError.Message = "Unauthorized: " + e.Message;
 
                     response.StatusCode = 401;
                     break;
